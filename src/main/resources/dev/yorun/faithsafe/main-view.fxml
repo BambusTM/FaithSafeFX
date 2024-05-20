@@ -33,7 +33,7 @@
       </MenuBar>
       <ToolBar layoutY="27.0" prefHeight="40.0" prefWidth="800.0">
         <items>
-          <Button mnemonicParsing="false" text="Create" />
+          <Button mnemonicParsing="false" onAction="#switchToCreatePwView" text="Create" />
             <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
             <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
         </items>

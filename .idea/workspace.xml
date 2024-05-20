@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc1eda13-cf7f-4608-8741-6e6bcb4965d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +48,14 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -91,6 +104,9 @@
       <recent name="C:\.Dev\FaithSafeFX\src\main\resources" />
       <recent name="C:\.Dev\FaithSafeFX\src\main" />
       <recent name="C:\.Dev\FaithSafeFX\src\main\java\dev\yorun\faithsafe" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.yorun.faithsafe" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -164,7 +180,7 @@
       <workItem from="1715595426707" duration="1688000" />
       <workItem from="1715606824844" duration="1716000" />
       <workItem from="1716140951042" duration="9476000" />
-      <workItem from="1716196010412" duration="1382000" />
+      <workItem from="1716196010412" duration="8332000" />
     </task>
     <servers />
   </component>
