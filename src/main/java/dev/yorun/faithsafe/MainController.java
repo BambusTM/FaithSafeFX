@@ -3,7 +3,6 @@ package dev.yorun.faithsafe;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,13 +16,10 @@ import java.util.ResourceBundle;
 
 public class MainController implements javafx.fxml.Initializable {
     private final StageService stageService = new StageService();
-
     @FXML
     private ListView<String> pwListView;
-
     @FXML
     private Label pwPreviewLabel;
-
     String[] passwords = {"password1", "password2", "password3"};
     String currentPassword;
 
@@ -59,7 +55,6 @@ public class MainController implements javafx.fxml.Initializable {
                             }
                         });
             });
-
             popupStage.showAndWait();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());

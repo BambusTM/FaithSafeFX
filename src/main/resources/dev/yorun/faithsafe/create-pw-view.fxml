@@ -28,35 +28,36 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Label>
-      <Label layoutX="36.0" layoutY="83.0" text="Username:">
+      <Label layoutX="66.0" layoutY="87.0" text="Username:">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="38.0" layoutY="118.0" prefHeight="35.0" prefWidth="109.0" text="Domain:">
+      <Label layoutX="66.0" layoutY="118.0" prefHeight="35.0" prefWidth="109.0" text="Domain:">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="38.0" layoutY="153.0" prefHeight="35.0" prefWidth="109.0" text="Email:">
+      <Label layoutX="66.0" layoutY="153.0" prefHeight="35.0" prefWidth="109.0" text="Email:">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="38.0" layoutY="188.0" prefHeight="35.0" prefWidth="109.0" text="Password:">
+      <Label layoutX="66.0" layoutY="188.0" prefHeight="35.0" prefWidth="109.0" text="Password:">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="38.0" layoutY="223.0" prefHeight="35.0" prefWidth="109.0" text="Validate:">
+      <Label layoutX="66.0" layoutY="223.0" prefHeight="35.0" prefWidth="109.0" text="Validate:">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="226.0" layoutY="88.0" prefHeight="25.0" prefWidth="292.0" promptText="username" />
-      <TextField layoutX="226.0" layoutY="158.0" prefHeight="25.0" prefWidth="292.0" promptText="example@exmp.com" />
-      <TextField layoutX="226.0" layoutY="193.0" prefHeight="25.0" prefWidth="292.0" promptText="password" />
-      <TextField layoutX="226.0" layoutY="228.0" prefHeight="25.0" prefWidth="292.0" promptText="password" />
-      <TextField layoutX="226.0" layoutY="123.0" prefHeight="25.0" prefWidth="292.0" promptText="www.example.com" />
+      <TextField fx:id="createPwUsername" layoutX="226.0" layoutY="88.0" prefHeight="25.0" prefWidth="292.0" promptText="username" />
+      <TextField fx:id="createPwEmail" layoutX="226.0" layoutY="158.0" prefHeight="25.0" prefWidth="292.0" promptText="example@exmp.com" />
+      <TextField fx:id="createPwPassword" layoutX="226.0" layoutY="193.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
+      <TextField fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="228.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
+      <TextField fx:id="createPwDomain" layoutX="226.0" layoutY="123.0" prefHeight="25.0" prefWidth="292.0" promptText="www.example.com" />
+      <Label fx:id="createPwWarning" layoutX="383.0" layoutY="258.0" prefHeight="17.0" prefWidth="135.0" style="-fx-alignment: right;" textAlignment="RIGHT" textFill="RED" />
    </children>
 </AnchorPane>

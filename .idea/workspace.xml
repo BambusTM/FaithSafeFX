@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc1eda13-cf7f-4608-8741-6e6bcb4965d8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,11 +176,22 @@
       <workItem from="1715595426707" duration="1688000" />
       <workItem from="1715606824844" duration="1716000" />
       <workItem from="1716140951042" duration="9476000" />
-      <workItem from="1716196010412" duration="8332000" />
+      <workItem from="1716196010412" duration="12018000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
