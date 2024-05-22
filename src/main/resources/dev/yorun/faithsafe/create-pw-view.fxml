@@ -58,6 +58,6 @@
       <TextField fx:id="createPwPassword" layoutX="226.0" layoutY="193.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
       <TextField fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="228.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
       <TextField fx:id="createPwDomain" layoutX="226.0" layoutY="123.0" prefHeight="25.0" prefWidth="292.0" promptText="www.example.com" />
-      <Label fx:id="createPwWarning" layoutX="383.0" layoutY="258.0" prefHeight="17.0" prefWidth="135.0" style="-fx-alignment: right;" textAlignment="RIGHT" textFill="RED" />
+      <Label fx:id="createPwWarning" layoutX="383.0" layoutY="258.0" prefHeight="17.0" prefWidth="135.0" textAlignment="RIGHT" textFill="RED" />
    </children>
 </AnchorPane>
