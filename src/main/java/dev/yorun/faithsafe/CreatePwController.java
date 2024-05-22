@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class CreatePwController {
@@ -37,7 +38,7 @@ public class CreatePwController {
         String email = createPwEmail.getText();
         String password = createPwPassword.getText();
 
-        if (confirmPw() || password.isEmpty()) { // Allow empty password
+        if (confirmPw()) {
             jsonMapper.saveToJson(username, domain, email, password, "");
 
             try {
@@ -47,7 +48,7 @@ public class CreatePwController {
                 stage.setScene(scene);
                 stage.close();
             } catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
+                System.err.println("Failed to close create-pw-view.fxml: " + e.getMessage());
             }
         } else {
             System.err.println("Error: Passwords do not match.");
@@ -68,7 +69,7 @@ public class CreatePwController {
                         }
                     });
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Failed to cancel: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -57,8 +57,7 @@ public class MainController implements javafx.fxml.Initializable {
             });
             popupStage.showAndWait();
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
         }
     }
 }

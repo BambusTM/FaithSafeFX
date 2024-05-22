@@ -35,6 +35,7 @@ public class Application extends javafx.application.Application {
             stage.show();
 
         } catch (IOException e) {
+            System.err.println("Failed to load main-view.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }
