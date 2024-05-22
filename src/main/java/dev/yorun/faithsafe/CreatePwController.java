@@ -1,5 +1,6 @@
 package dev.yorun.faithsafe;
 
+import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import java.util.Objects;
 
 public class CreatePwController {
     private final StageService stageService = new StageService();
+    private final JsonMapper jsonMapper = new JsonMapper();
 
     @FXML
     private TextField createPwUsername;
@@ -36,7 +38,7 @@ public class CreatePwController {
         String password = createPwPassword.getText();
 
         if (confirmPw() || password.isEmpty()) { // Allow empty password
-
+            jsonMapper.saveToJson(username, domain, email, password, "");
 
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));

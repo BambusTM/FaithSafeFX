@@ -6,6 +6,7 @@ module dev.yorun.faithsafe {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
 
+    exports dev.yorun.faithsafe.service;
     exports dev.yorun.faithsafe;
     opens dev.yorun.faithsafe to javafx.fxml;
 }
