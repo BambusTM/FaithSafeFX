@@ -1,5 +1,7 @@
 package dev.yorun.faithsafe;
 
+import dev.yorun.faithsafe.service.DataObject;
+import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,24 +13,26 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements javafx.fxml.Initializable {
+    private final JsonMapper jsonMapper = new JsonMapper();
     private final StageService stageService = new StageService();
     @FXML
     private ListView<String> pwListView;
     @FXML
     private Label pwPreviewLabel;
-    String[] passwords = {"password1", "password2", "password3"};
-    String currentPassword;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        pwListView.getItems().addAll(passwords);
+        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
+        for (DataObject entry : passwordEntries) {
+            pwListView.getItems().add(entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
+        }
         pwListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            currentPassword = newValue;
-            pwPreviewLabel.setText(currentPassword);
+            pwPreviewLabel.setText(newValue);
         });
     }
 
