@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -28,36 +29,42 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Label>
-      <Label layoutX="66.0" layoutY="87.0" text="Username:">
+      <Label layoutX="66.0" layoutY="70.0" text="Username:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="118.0" prefHeight="35.0" prefWidth="109.0" text="Domain:">
+      <Label layoutX="66.0" layoutY="101.0" prefHeight="35.0" prefWidth="109.0" text="Domain:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="153.0" prefHeight="35.0" prefWidth="109.0" text="Email:">
+      <Label layoutX="66.0" layoutY="136.0" prefHeight="35.0" prefWidth="109.0" text="Email:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="188.0" prefHeight="35.0" prefWidth="109.0" text="Password:">
+      <Label layoutX="66.0" layoutY="171.0" prefHeight="35.0" prefWidth="109.0" text="Password:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="223.0" prefHeight="35.0" prefWidth="109.0" text="Validate:">
+      <Label layoutX="66.0" layoutY="206.0" prefHeight="35.0" prefWidth="109.0" text="Validate:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="createPwUsername" layoutX="226.0" layoutY="88.0" prefHeight="25.0" prefWidth="292.0" promptText="username" />
-      <TextField fx:id="createPwDomain" layoutX="226.0" layoutY="123.0" prefHeight="25.0" prefWidth="292.0" promptText="www.example.com" />
-      <TextField fx:id="createPwEmail" layoutX="226.0" layoutY="158.0" prefHeight="25.0" prefWidth="292.0" promptText="example@exmp.com" />
-      <TextField fx:id="createPwPassword" layoutX="226.0" layoutY="193.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
-      <TextField fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="228.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
-      <Label fx:id="createPwWarning" layoutX="383.0" layoutY="258.0" prefHeight="17.0" prefWidth="135.0" textAlignment="RIGHT" textFill="RED" />
+      <TextField fx:id="createPwUsername" layoutX="226.0" layoutY="71.0" prefHeight="25.0" prefWidth="292.0" promptText="username" />
+      <TextField fx:id="createPwDomain" layoutX="226.0" layoutY="106.0" prefHeight="25.0" prefWidth="292.0" promptText="www.example.com" />
+      <TextField fx:id="createPwEmail" layoutX="226.0" layoutY="141.0" prefHeight="25.0" prefWidth="292.0" promptText="example@exmp.com" />
+      <TextField fx:id="createPwPassword" layoutX="226.0" layoutY="176.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
+      <TextField fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="211.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="25.0" prefWidth="292.0" promptText="password" />
+      <Label fx:id="createPwWarning" layoutX="383.0" layoutY="236.0" prefHeight="18.0" prefWidth="135.0" textAlignment="RIGHT" textFill="RED" />
+      <TextArea fx:id="createPwDescription" layoutX="226.0" layoutY="254.0" prefHeight="102.0" prefWidth="292.0" promptText="Ex.: Delete after end of subscription..." />
+      <Label layoutX="66.0" layoutY="254.0" prefHeight="35.0" prefWidth="109.0" text="Memo:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

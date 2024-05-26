@@ -23,7 +23,7 @@ public class JsonMapper {
         );
         dataObjectList.add(d1);
         try {
-            objectMapper.writeValue(new File("\\FaithSafeFX\\data.json"), dataObjectList);
+            objectMapper.writeValue(new File("C:\\.Dev\\FaithSafeFX\\data.json"), dataObjectList);
         } catch (IOException e) {
             System.err.println("Failed to save data: " + e.getMessage());
         }

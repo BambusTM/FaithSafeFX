@@ -9,10 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class CreatePwController {
@@ -31,15 +31,18 @@ public class CreatePwController {
     private TextField createPwConfirmPassword;
     @FXML
     private Label createPwWarning;
+    @FXML
+    private TextArea createPwDescription;
 
     public void finishCreatePw(ActionEvent event) {
         String username = createPwUsername.getText();
         String domain = createPwDomain.getText();
         String email = createPwEmail.getText();
         String password = createPwPassword.getText();
+        String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.saveToJson(username, domain, email, password, "");
+            jsonMapper.saveToJson(username, domain, email, password, description);
 
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));
