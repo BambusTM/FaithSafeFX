@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d2e8b34-a0a1-49db-a9c0-99e880dfcc3b" name="Changes" comment="idk">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/ListObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

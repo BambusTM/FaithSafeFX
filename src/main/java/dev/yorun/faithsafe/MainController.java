@@ -2,6 +2,7 @@ package dev.yorun.faithsafe;
 
 import dev.yorun.faithsafe.service.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
+import dev.yorun.faithsafe.service.ListObject;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ public class MainController implements javafx.fxml.Initializable {
     private final StageService stageService = new StageService();
 
     @FXML
-    private ListView<String> pwListView;
+    private ListView<ListObject> pwListView;
     @FXML
     private Label pwPreviewLabel;
 
@@ -32,7 +33,7 @@ public class MainController implements javafx.fxml.Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         refreshPasswordList();
         pwListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            pwPreviewLabel.setText(newValue);
+            pwPreviewLabel.setText(newValue == null ? "No password selected..." : newValue.toString()); // source: Togira
         });
     }
 
@@ -40,7 +41,7 @@ public class MainController implements javafx.fxml.Initializable {
         pwListView.getItems().clear();
         List<DataObject> passwordEntries = jsonMapper.loadFromJson();
         for (DataObject entry : passwordEntries) {
-            pwListView.getItems().add(entry.getId() + ". -" + entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
+            pwListView.getItems().add(new ListObject(entry.getId(), entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail()));
         }
     }
 
@@ -79,12 +80,11 @@ public class MainController implements javafx.fxml.Initializable {
     }
 
     public void deletePassword(ActionEvent event) {
-        String selectedEntry = pwListView.getSelectionModel().getSelectedItem();
+        ListObject selectedEntry = pwListView.getSelectionModel().getSelectedItem();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         if (selectedEntry != null) {
-            String[] parts = selectedEntry.split("\\.");
-            int id = Integer.parseInt(parts[0].trim());
+            int id = selectedEntry.getId();
 
             stageService.conformationPopup(currentStage,
                     "Delete Password",
