@@ -11,10 +11,18 @@ import java.util.List;
 public class JsonMapper {
     private static final String FILE_PATH = "data.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private int currentMaxId = 0;
+
+    public JsonMapper() {
+        List<DataObject> entries = loadFromJson();
+        if (!entries.isEmpty()) {
+            currentMaxId = entries.stream().mapToInt(DataObject::getId).max().orElse(0);
+        }
+    }
 
     public void saveToJson(String username, String domain, String email, String password, String description) {
         List<DataObject> entries = loadFromJson();
-        DataObject newEntry = new DataObject(username, domain, email, password, description);
+        DataObject newEntry = new DataObject(++currentMaxId, username, domain, email, password, description);
         entries.add(newEntry);
         saveToFile(entries);
     }
@@ -37,5 +45,36 @@ public class JsonMapper {
         } catch (IOException e) {
             System.err.println("Failed to save data: " + e.getMessage());
         }
+    }
+
+    public DataObject findById(int id) {
+        List<DataObject> entries = loadFromJson();
+        for (DataObject entry : entries) {
+            if (entry.getId() == id) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public void updateEntry(int id, String username, String domain, String email, String password, String description) {
+        List<DataObject> entries = loadFromJson();
+        for (DataObject entry : entries) {
+            if (entry.getId() == id) {
+                entry.setUsername(username);
+                entry.setDomain(domain);
+                entry.setEmail(email);
+                entry.setPassword(password);
+                entry.setDescription(description);
+                break;
+            }
+        }
+        saveToFile(entries);
+    }
+
+    public void deleteEntry(int id) {
+        List<DataObject> entries = loadFromJson();
+        entries.removeIf(entry -> entry.getId() == id);
+        saveToFile(entries);
     }
 }

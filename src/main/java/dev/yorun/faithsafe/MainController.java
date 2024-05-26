@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class MainController implements javafx.fxml.Initializable {
     private final JsonMapper jsonMapper = new JsonMapper();
     private final StageService stageService = new StageService();
+
     @FXML
     private ListView<String> pwListView;
     @FXML
@@ -27,18 +28,28 @@ public class MainController implements javafx.fxml.Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
-        for (DataObject entry : passwordEntries) {
-            pwListView.getItems().add(entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
-        }
+        refreshPasswordList();
         pwListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             pwPreviewLabel.setText(newValue);
         });
     }
 
+    private void refreshPasswordList() {
+        pwListView.getItems().clear();
+        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
+        for (DataObject entry : passwordEntries) {
+            pwListView.getItems().add(entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
+        }
+    }
+
     public void switchToCreatePwView() {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("create-pw-view.fxml"));
+            Parent root = loader.load();
+
+            CreatePwController createPwController = loader.getController();
+            createPwController.setOnPasswordCreated(aVoid -> refreshPasswordList());
+
             Stage popupStage = new Stage();
             Scene scene = new Scene(root);
 

@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bc1eda13-cf7f-4608-8741-6e6bcb4965d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/DataObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/DataObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +313,7 @@
       <workItem from="1715606824844" duration="1716000" />
       <workItem from="1716140951042" duration="9476000" />
       <workItem from="1716196010412" duration="12018000" />
-      <workItem from="1716733280163" duration="3782000" />
+      <workItem from="1716733280163" duration="4846000" />
     </task>
     <servers />
   </component>

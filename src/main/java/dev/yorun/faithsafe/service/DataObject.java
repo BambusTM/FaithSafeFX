@@ -1,6 +1,7 @@
 package dev.yorun.faithsafe.service;
 
 public class DataObject {
+    private int id;
     private String username;
     private String domain;
     private String email;
@@ -10,7 +11,8 @@ public class DataObject {
     public DataObject() {
     }
 
-    public DataObject(String username, String domain, String email, String password, String description) {
+    public DataObject(int id, String username, String domain, String email, String password, String description) {
+        this.id = id;
         this.username = username;
         this.domain = domain;
         this.email = email;
@@ -19,6 +21,14 @@ public class DataObject {
     }
 
     // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }

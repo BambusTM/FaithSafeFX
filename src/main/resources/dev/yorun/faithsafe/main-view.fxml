@@ -33,9 +33,9 @@
       </MenuBar>
       <ToolBar layoutY="27.0" prefHeight="40.0" prefWidth="800.0">
         <items>
-          <Button mnemonicParsing="false" onAction="#switchToCreatePwView" text="Create" />
-            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
-            <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
+          <Button mnemonicParsing="false" onAction="#switchToCreatePwView" prefHeight="25.0" prefWidth="70.0" text="Create" />
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Edit" />
+            <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Delet" />
         </items>
       </ToolBar>
       <ListView fx:id="pwListView" fixedCellSize="50.0" layoutY="120.0" prefWidth="800.0" />

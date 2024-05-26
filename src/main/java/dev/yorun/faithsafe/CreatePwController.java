@@ -2,7 +2,6 @@ package dev.yorun.faithsafe;
 
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
-import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class CreatePwController {
     private final StageService stageService = new StageService();
     private final JsonMapper jsonMapper = new JsonMapper();
+    private Consumer<Void> onPasswordCreated;
 
     @FXML
     private TextField createPwUsername;
@@ -35,6 +36,10 @@ public class CreatePwController {
     @FXML
     private TextArea createPwDescription;
 
+    public void setOnPasswordCreated(Consumer<Void> onPasswordCreated) {
+        this.onPasswordCreated = onPasswordCreated;
+    }
+
     public void finishCreatePw(ActionEvent event) {
         String username = createPwUsername.getText();
         String domain = createPwDomain.getText();
@@ -44,6 +49,10 @@ public class CreatePwController {
 
         if (confirmPw()) {
             jsonMapper.saveToJson(username, domain, email, password, description);
+
+            if (onPasswordCreated != null) {
+                onPasswordCreated.accept(null);
+            }
 
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));
