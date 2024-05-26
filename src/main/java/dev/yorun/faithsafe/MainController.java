@@ -3,8 +3,10 @@ package dev.yorun.faithsafe;
 import dev.yorun.faithsafe.service.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -38,7 +40,7 @@ public class MainController implements javafx.fxml.Initializable {
         pwListView.getItems().clear();
         List<DataObject> passwordEntries = jsonMapper.loadFromJson();
         for (DataObject entry : passwordEntries) {
-            pwListView.getItems().add(entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
+            pwListView.getItems().add(entry.getId() + ". -" + entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail());
         }
     }
 
@@ -60,7 +62,7 @@ public class MainController implements javafx.fxml.Initializable {
 
             popupStage.setOnCloseRequest(e -> {
                 e.consume();
-                stageService.logoutPopup(popupStage,
+                stageService.conformationPopup(popupStage,
                         "Cancel",
                         "Cancel Confirmation",
                         "Are you sure you want to cancel your creation? All data will be lost.",
@@ -73,6 +75,27 @@ public class MainController implements javafx.fxml.Initializable {
             popupStage.showAndWait();
         } catch (Exception e) {
             System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
+        }
+    }
+
+    public void deletePassword(ActionEvent event) {
+        String selectedEntry = pwListView.getSelectionModel().getSelectedItem();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        if (selectedEntry != null) {
+            String[] parts = selectedEntry.split("\\.");
+            int id = Integer.parseInt(parts[0].trim());
+
+            stageService.conformationPopup(currentStage,
+                    "Delete Password",
+                    "Delete Confirmation",
+                    "Are you sure you want delete this Password? You won't be able to recover it.",
+                    confirmed -> {
+                        if (confirmed) {
+                            jsonMapper.deleteEntry(id);
+                            refreshPasswordList();
+                        }
+                    });
         }
     }
 }

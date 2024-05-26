@@ -72,7 +72,7 @@ public class CreatePwController {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stageService.logoutPopup(currentStage,
+            stageService.conformationPopup(currentStage,
                     "Cancel",
                     "Cancel Confirmation",
                     "Are you sure you want to cancel your creation? All data will be lost.",

@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc1eda13-cf7f-4608-8741-6e6bcb4965d8" name="Changes" comment="">
+    <list default="true" id="6d2e8b34-a0a1-49db-a9c0-99e880dfcc3b" name="Changes" comment="idk">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +61,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Record" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="Record" />
       </list>
     </option>
   </component>
@@ -283,14 +287,6 @@
         <item itemvalue="Gradle./Users/yoru/Documents/Dev/FaithSafe/FaithSafeFX [idea]" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-21.0.2-semeru-21.0.2-4caba194b151-2a6dbd63" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

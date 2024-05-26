@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class StageService {
-    public void logoutPopup(Stage owner, String title, String header, String content, Consumer<Boolean> callback) {
+    public void conformationPopup(Stage owner, String title, String header, String content, Consumer<Boolean> callback) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(owner);
         alert.setTitle(title);
