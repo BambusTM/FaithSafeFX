@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc1eda13-cf7f-4608-8741-6e6bcb4965d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/CreatePwController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/DataObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/DataObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/StageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/create-pw-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +65,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -313,7 +314,7 @@
       <workItem from="1715606824844" duration="1716000" />
       <workItem from="1716140951042" duration="9476000" />
       <workItem from="1716196010412" duration="12018000" />
-      <workItem from="1716733280163" duration="1317000" />
+      <workItem from="1716733280163" duration="2973000" />
     </task>
     <servers />
   </component>
