@@ -1,5 +1,7 @@
 package dev.yorun.faithsafe;
 
+import dev.yorun.faithsafe.service.StageService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LoginController {
+  private final StageService stageService = new StageService();
 
   @FXML
   private PasswordField passwordField;
@@ -19,16 +22,13 @@ public class LoginController {
   private Button resetButton;
 
   public void login() {
-      checkPassword();
+    checkPassword();
   }
 
-  public void switchToResetPwView() {
+  public void switchToResetPwView(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("reset-pw-view.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("login-reset-view.fxml"));
       Parent root = loader.load();
-
-      ResetPwController resetPwController = loader.getController();
-
       Stage popupStage = new Stage();
       Scene scene = new Scene(root);
 
