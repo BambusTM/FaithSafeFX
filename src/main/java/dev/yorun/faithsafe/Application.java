@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,8 +18,8 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
-            Scene scene = new Scene(root, Color.rgb(31, 31, 31, 1));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-view.fxml")));
+            Scene scene = new Scene(root);
 
             // Image icon = new Image("src/main/resources/Safe.png");
             // stage.getIcons().add();

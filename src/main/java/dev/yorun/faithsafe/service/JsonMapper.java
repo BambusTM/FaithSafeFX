@@ -3,6 +3,7 @@ package dev.yorun.faithsafe.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dev.yorun.faithsafe.objects.DataObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package dev.yorun.faithsafe;
 
-import dev.yorun.faithsafe.service.DataObject;
+import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
-import dev.yorun.faithsafe.service.ListObject;
+import dev.yorun.faithsafe.objects.ListObject;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements javafx.fxml.Initializable {

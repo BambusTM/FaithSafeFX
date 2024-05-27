@@ -1,4 +1,4 @@
-package dev.yorun.faithsafe.service;
+package dev.yorun.faithsafe.objects;
 
 public class DataObject {
     private int id;
