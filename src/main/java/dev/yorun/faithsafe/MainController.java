@@ -80,6 +80,53 @@ public class MainController implements javafx.fxml.Initializable {
         }
     }
 
+
+    public void switchToEditPwView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-pw-view.fxml"));
+            Parent root = loader.load();
+
+            EditPwController editPwController = loader.getController();
+            if (pwListView.getSelectionModel().getSelectedItem() == null) return;
+            ListObject item = pwListView.getSelectionModel().getSelectedItem();
+            DataObject data = jsonMapper.findById(DATA_PATH, item.getId());
+            editPwController.init(
+                item.getId(),
+                    data.getUsername(),
+                    data.getDomain(),
+                    data.getPassword(),
+                    "",
+                    data.getDescription()
+            );
+            editPwController.setOnEditSave(aVoid -> refreshPasswordList());
+
+
+            Stage popupStage = new Stage();
+            Scene scene = new Scene(root);
+
+            popupStage.setTitle("Edit Password");
+            popupStage.setResizable(false);
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(scene);
+
+            popupStage.setOnCloseRequest(e -> {
+                e.consume();
+                stageService.conformationPopup(popupStage,
+                        "Edit",
+                        "Cancel Confirmation",
+                        "Are you sure you want to cancel your creation? All data will be lost.",
+                        confirmed -> {
+                            if (confirmed) {
+                                popupStage.close();
+                            }
+                        });
+            });
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            System.err.println("Failed to switch to edit-pw-view.fxml: " + e.getMessage());
+        }
+    }
+
     public void deletePassword(ActionEvent event) {
         ListObject selectedEntry = pwListView.getSelectionModel().getSelectedItem();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,5 +145,9 @@ public class MainController implements javafx.fxml.Initializable {
                         }
                     });
         }
+    }
+
+    public void onEdit(ListView.EditEvent<ListObject> editEvent) {
+
     }
 }
