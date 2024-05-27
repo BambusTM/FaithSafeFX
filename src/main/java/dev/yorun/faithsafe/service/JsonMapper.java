@@ -13,6 +13,7 @@ public class JsonMapper {
     private static final String FILE_PATH = "data.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private int currentMaxId = 0;
+    private String path;
 
     public JsonMapper(String path) {
         List<DataObject> entries = loadFromJson(path);

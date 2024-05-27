@@ -1,6 +1,7 @@
 package dev.yorun.faithsafe;
 
 import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
+import static dev.yorun.faithsafe.service.Variables.USER_PATH;
 
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;

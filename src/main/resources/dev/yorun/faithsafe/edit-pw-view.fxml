@@ -10,18 +10,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.CreatePwController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.EditPwController">
    <children>
       <ButtonBar layoutY="360.0" prefHeight="40.0" prefWidth="600.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#cancelCreatePw" text="cancel" />
-            <Button layoutX="515.0" layoutY="18.0" mnemonicParsing="false" onAction="#finishCreatePw" text="create" />
+          <Button mnemonicParsing="false" onAction="#cancelEditPw" text="cancel" />
+            <Button layoutX="515.0" layoutY="18.0" mnemonicParsing="false" onAction="#finishEditPw" text="save" />
         </buttons>
          <padding>
             <Insets right="10.0" />
          </padding>
       </ButtonBar>
-      <Label contentDisplay="CENTER" layoutX="154.0" layoutY="14.0" text="Create a password" textAlignment="CENTER" textFill="#390c0c">
+      <Label contentDisplay="CENTER" layoutX="154.0" layoutY="14.0" text="Edit a password" textAlignment="CENTER" textFill="#390c0c">
          <font>
             <Font size="36.0" />
          </font>

@@ -18,7 +18,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-view.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
             Scene scene = new Scene(root);
 
             // Image icon = new Image("src/main/resources/Safe.png");
