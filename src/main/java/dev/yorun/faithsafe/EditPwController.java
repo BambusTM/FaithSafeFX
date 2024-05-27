@@ -39,10 +39,11 @@ public class EditPwController {
     @FXML
     private TextArea createPwDescription;
 
-    public void init(int id, String username, String domain, String password, String warning, String description) {
+    public void init(int id, String username, String domain, String email, String password, String warning, String description) {
         this.id = id;
         this.createPwUsername.setText(username);
         this.createPwDomain.setText(domain);
+        this.createPwEmail.setText(email);
         this.createPwPassword.setText(password);
         this.createPwConfirmPassword.setText(password);
         this.createPwWarning.setText(warning);
@@ -83,7 +84,7 @@ public class EditPwController {
         String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.updateEntry(DATA_PATH, id, username, domain, email, password, description);
+            jsonMapper.updateEntry(id, username, domain, email, password, description);
 
             if (onEditSave != null) {
                 onEditSave.accept(null);

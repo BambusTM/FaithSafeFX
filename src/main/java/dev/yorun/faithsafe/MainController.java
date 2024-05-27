@@ -89,11 +89,12 @@ public class MainController implements javafx.fxml.Initializable {
             EditPwController editPwController = loader.getController();
             if (pwListView.getSelectionModel().getSelectedItem() == null) return;
             ListObject item = pwListView.getSelectionModel().getSelectedItem();
-            DataObject data = jsonMapper.findById(DATA_PATH, item.getId());
+            DataObject data = jsonMapper.findById(item.getId());
             editPwController.init(
                 item.getId(),
                     data.getUsername(),
                     data.getDomain(),
+                    data.getEmail(),
                     data.getPassword(),
                     "",
                     data.getDescription()

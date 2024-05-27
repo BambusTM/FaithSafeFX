@@ -13,7 +13,6 @@ public class JsonMapper {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String path;
     private int currentMaxId = 0;
-    private String path;
 
     public JsonMapper(String inputPath) {
         this.path = inputPath;
