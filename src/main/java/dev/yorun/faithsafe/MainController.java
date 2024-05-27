@@ -1,5 +1,7 @@
 package dev.yorun.faithsafe;
 
+import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
+
 import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.objects.ListObject;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements javafx.fxml.Initializable {
-    private final JsonMapper jsonMapper = new JsonMapper();
+    private final JsonMapper jsonMapper = new JsonMapper(DATA_PATH);
     private final StageService stageService = new StageService();
 
     @FXML
@@ -38,7 +40,7 @@ public class MainController implements javafx.fxml.Initializable {
 
     private void refreshPasswordList() {
         pwListView.getItems().clear();
-        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
+        List<DataObject> passwordEntries = jsonMapper.loadFromJson(DATA_PATH);
         for (DataObject entry : passwordEntries) {
             pwListView.getItems().add(new ListObject(entry.getId(), entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail()));
         }
@@ -91,7 +93,7 @@ public class MainController implements javafx.fxml.Initializable {
                     "Are you sure you want delete this Password? You won't be able to recover it.",
                     confirmed -> {
                         if (confirmed) {
-                            jsonMapper.deleteEntry(id);
+                            jsonMapper.deleteEntry(DATA_PATH, id);
                             refreshPasswordList();
                         }
                     });
