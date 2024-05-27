@@ -10,4 +10,6 @@ module dev.yorun.faithsafe {
     exports dev.yorun.faithsafe;
     opens dev.yorun.faithsafe to javafx.fxml;
     opens dev.yorun.faithsafe.service to com.fasterxml.jackson.databind;
+  exports dev.yorun.faithsafe.objects;
+  opens dev.yorun.faithsafe.objects to com.fasterxml.jackson.databind;
 }

@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d2e8b34-a0a1-49db-a9c0-99e880dfcc3b" name="Changes" comment="idk">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/ListObject.java" afterDir="false" />
+    <list default="true" id="6d2e8b34-a0a1-49db-a9c0-99e880dfcc3b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/ResetPwController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/login-reset-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/DataObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/objects/DataObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/JsonMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/service/ListObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/yorun/faithsafe/objects/ListObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/yorun/faithsafe/login-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +51,6 @@
                 <item name="FaithSafe" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="FaithSafe" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -319,5 +322,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
