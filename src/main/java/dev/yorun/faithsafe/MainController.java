@@ -40,7 +40,7 @@ public class MainController implements javafx.fxml.Initializable {
 
     private void refreshPasswordList() {
         pwListView.getItems().clear();
-        List<DataObject> passwordEntries = jsonMapper.loadFromJson(DATA_PATH);
+        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
         for (DataObject entry : passwordEntries) {
             pwListView.getItems().add(new ListObject(entry.getId(), entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail()));
         }
@@ -93,7 +93,7 @@ public class MainController implements javafx.fxml.Initializable {
                     "Are you sure you want delete this Password? You won't be able to recover it.",
                     confirmed -> {
                         if (confirmed) {
-                            jsonMapper.deleteEntry(DATA_PATH, id);
+                            jsonMapper.deleteEntry(id);
                             refreshPasswordList();
                         }
                     });

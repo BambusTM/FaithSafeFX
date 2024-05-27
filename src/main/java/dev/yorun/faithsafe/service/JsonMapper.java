@@ -10,25 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonMapper {
-    private static final String FILE_PATH = "data.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final String path;
     private int currentMaxId = 0;
 
-    public JsonMapper(String path) {
-        List<DataObject> entries = loadFromJson(path);
+    public JsonMapper(String inputPath) {
+        this.path = inputPath;
+        List<DataObject> entries = loadFromJson();
         if (!entries.isEmpty()) {
             currentMaxId = entries.stream().mapToInt(DataObject::getId).max().orElse(0);
         }
     }
 
-    public void saveToJson(String path, String username, String domain, String email, String password, String description) {
-        List<DataObject> entries = loadFromJson(path);
+    public void saveToJson(String username, String domain, String email, String password, String description) {
+        List<DataObject> entries = loadFromJson();
         DataObject newEntry = new DataObject(++currentMaxId, username, domain, email, password, description);
         entries.add(newEntry);
         saveToFile(entries);
     }
 
-    public List<DataObject> loadFromJson(String path) {
+    public List<DataObject> loadFromJson() {
         try {
             File file = new File(path);
             if (file.exists()) {
@@ -42,14 +43,14 @@ public class JsonMapper {
 
     private void saveToFile(List<DataObject> entries) {
         try {
-            objectMapper.writeValue(new File(FILE_PATH), entries);
+            objectMapper.writeValue(new File(path), entries);
         } catch (IOException e) {
             System.err.println("Failed to save data: " + e.getMessage());
         }
     }
 
-    public DataObject findById(String path, int id) {
-        List<DataObject> entries = loadFromJson(path);
+    public DataObject findById(int id) {
+        List<DataObject> entries = loadFromJson();
         for (DataObject entry : entries) {
             if (entry.getId() == id) {
                 return entry;
@@ -58,8 +59,8 @@ public class JsonMapper {
         return null;
     }
 
-    public void updateEntry(String path, int id, String username, String domain, String email, String password, String description) {
-        List<DataObject> entries = loadFromJson(path);
+    public void updateEntry(int id, String username, String domain, String email, String password, String description) {
+        List<DataObject> entries = loadFromJson();
         for (DataObject entry : entries) {
             if (entry.getId() == id) {
                 entry.setUsername(username);
@@ -73,8 +74,8 @@ public class JsonMapper {
         saveToFile(entries);
     }
 
-    public void deleteEntry(String path, int id) {
-        List<DataObject> entries = loadFromJson(path);
+    public void deleteEntry(int id) {
+        List<DataObject> entries = loadFromJson();
         entries.removeIf(entry -> entry.getId() == id);
         saveToFile(entries);
     }

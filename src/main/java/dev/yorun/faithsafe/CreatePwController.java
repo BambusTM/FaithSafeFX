@@ -50,7 +50,7 @@ public class CreatePwController {
         String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.saveToJson(DATA_PATH, username, domain, email, password, description);
+            jsonMapper.saveToJson(username, domain, email, password, description);
 
             if (onPasswordCreated != null) {
                 onPasswordCreated.accept(null);
