@@ -12,11 +12,11 @@
       <ToolBar layoutX="1.0" prefHeight="40.0" prefWidth="800.0">
         <items>
           <Button mnemonicParsing="false" onAction="#switchToCreatePwView" prefHeight="25.0" prefWidth="70.0" text="Create" />
-            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Edit" />
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToEditPwView" prefHeight="25.0" prefWidth="70.0" text="Edit" />
             <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#deletePassword" prefHeight="25.0" prefWidth="70.0" text="Delete" />
         </items>
       </ToolBar>
-      <ListView fx:id="pwListView" fixedCellSize="50.0" layoutY="93.0" prefHeight="440.0" prefWidth="800.0" />
+      <ListView fx:id="pwListView" fixedCellSize="50.0" layoutY="93.0" onEditStart="#onEdit" prefHeight="440.0" prefWidth="800.0" />
       <Label fx:id="pwPreviewLabel" alignment="CENTER" layoutX="1.0" layoutY="40.0" prefHeight="40.0" prefWidth="800.0" text="No password selected...">
          <font>
             <Font size="36.0" />

@@ -27,7 +27,7 @@ tasks.withType(JavaCompile).configureEach {
 
 application {
   mainModule = 'dev.yorun.faithsafe'
-  mainClass = 'dev.yorun.faithsafe.HelloApplication'
+  mainClass = 'dev.yorun.faithsafe.Application'
 }
 
 javafx {

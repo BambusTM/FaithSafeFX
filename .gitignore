@@ -4,15 +4,18 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+data.json
+user.json
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea
 *.iws
 *.iml
 *.ipr
-data.json
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/

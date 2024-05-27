@@ -1,8 +1,5 @@
 package dev.yorun.faithsafe;
 
-import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
-import static dev.yorun.faithsafe.service.Variables.USER_PATH;
-
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.event.ActionEvent;
@@ -15,14 +12,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class CreatePwController {
+public class EditPwController {
+
     private final StageService stageService = new StageService();
     private final JsonMapper jsonMapper = new JsonMapper(DATA_PATH);
-    private Consumer<Void> onPasswordCreated;
+    private Consumer<Void> onEditSave;
+    private int id;
 
     @FXML
     private TextField createPwUsername;
@@ -39,11 +39,44 @@ public class CreatePwController {
     @FXML
     private TextArea createPwDescription;
 
-    public void setOnPasswordCreated(Consumer<Void> onPasswordCreated) {
-        this.onPasswordCreated = onPasswordCreated;
+    public void init(int id, String username, String domain, String email, String password, String warning, String description) {
+        this.id = id;
+        this.createPwUsername.setText(username);
+        this.createPwDomain.setText(domain);
+        this.createPwEmail.setText(email);
+        this.createPwPassword.setText(password);
+        this.createPwConfirmPassword.setText(password);
+        this.createPwWarning.setText(warning);
+        this.createPwDescription.setText(description);
+        
     }
 
-    public void finishCreatePw(ActionEvent event) {
+
+    public void setOnEditSave(Consumer<Void> onEditSave) {
+        this.onEditSave = onEditSave;
+    }
+
+    public void cancelEditPw(ActionEvent event) {
+
+        try {
+            Stage currentStage = (Stage) createPwConfirmPassword.getScene().getWindow();
+
+            stageService.conformationPopup(currentStage,
+                    "Cancel",
+                    "Cancel Confirmation",
+                    "Are you sure you want to cancel your creation? All data will be lost.",
+                    aBoolean -> {
+                        if (aBoolean) { currentStage.close(); }
+                    }
+                    );
+        } catch (Exception e) {
+            System.err.println("Failed to cancel: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    public void finishEditPw(ActionEvent event) {
         String username = createPwUsername.getText();
         String domain = createPwDomain.getText();
         String email = createPwEmail.getText();
@@ -51,10 +84,10 @@ public class CreatePwController {
         String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.saveToJson(username, domain, email, password, description);
+            jsonMapper.updateEntry(id, username, domain, email, password, description);
 
-            if (onPasswordCreated != null) {
-                onPasswordCreated.accept(null);
+            if (onEditSave != null) {
+                onEditSave.accept(null);
             }
 
             try {
@@ -71,24 +104,6 @@ public class CreatePwController {
         }
     }
 
-    public void cancelCreatePw(ActionEvent event) {
-        try {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stageService.conformationPopup(currentStage,
-                    "Cancel",
-                    "Cancel Confirmation",
-                    "Are you sure you want to cancel your creation? All data will be lost.",
-                    confirmed -> {
-                        if (confirmed) {
-                            currentStage.close();
-                        }
-                    });
-        } catch (Exception e) {
-            System.err.println("Failed to cancel: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
     public boolean confirmPw() {
         if (Objects.equals(createPwPassword.getText(), createPwConfirmPassword.getText())) {
