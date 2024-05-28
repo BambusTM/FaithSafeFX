@@ -3,18 +3,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.LoginController">
     <children>
-        <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="200.0" prefHeight="25.0" prefWidth="200.0" promptText="password" />
-        <Label layoutX="95.0" layoutY="92.0" text="Enter password to continue">
+        <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="219.0" prefHeight="26.0" prefWidth="270.0" promptText="password" />
+        <Label layoutX="230.0" layoutY="54.0" text="FaithSave">
             <font>
                 <Font size="34.0" />
             </font>
         </Label>
-        <Button fx:id="loginButton" layoutX="375.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Login" />
-        <Button fx:id="resetButton" layoutX="259.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToResetPwView" prefHeight="25.0" prefWidth="82.0" text="Reset" />
+        <Button fx:id="loginButton" layoutX="365.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Login" />
+        <Button fx:id="resetButton" layoutX="165.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToResetPwView" prefHeight="25.0" prefWidth="70.0" text="Reset" />
+        <TextField fx:id="username" layoutX="165.0" layoutY="174.0" prefHeight="26.0" prefWidth="270.0" promptText="username" />
+        <Label fx:id="usenameWarning" layoutX="338.0" layoutY="200.0" prefHeight="17.0" prefWidth="100.0" text="Username is incorrect." textFill="RED">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Label>
+        <Label fx:id="passwordWarning" layoutX="338.0" layoutY="245.0" prefHeight="17.0" prefWidth="100.0" text="Password is incorrect." textFill="RED">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Label>
+        <Label layoutX="179.0" layoutY="97.0" text="Your (hopefully) trusted password manager." />
     </children>
 </AnchorPane>
