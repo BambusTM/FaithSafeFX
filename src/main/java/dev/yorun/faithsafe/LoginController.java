@@ -1,5 +1,8 @@
 package dev.yorun.faithsafe;
 
+import static dev.yorun.faithsafe.service.Variables.USER_PATH;
+
+import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.StageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,11 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LoginController {
   private final StageService stageService = new StageService();
+  private final JsonMapper jsonMapper = new JsonMapper(USER_PATH);
 
   @FXML
   private PasswordField passwordField;
@@ -20,6 +23,13 @@ public class LoginController {
   private Button loginButton;
   @FXML
   private Button resetButton;
+
+  private Scene loginScene;
+
+  @FXML
+  public void initialize() {
+    loginScene = loginButton.getScene();
+  }
 
   public void login() {
     checkPassword();
@@ -29,21 +39,17 @@ public class LoginController {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("login-reset-view.fxml"));
       Parent root = loader.load();
-      Stage popupStage = new Stage();
+      ResetPwController resetPwController = loader.getController();
+      resetPwController.setPreviousScene(loginScene);
+      Stage currentStage = (Stage) loginButton.getScene().getWindow();
       Scene scene = new Scene(root);
-
-      popupStage.setTitle("Reset Password");
-      popupStage.setResizable(false);
-      popupStage.initModality(Modality.APPLICATION_MODAL);
-      popupStage.setScene(scene);
-
-      popupStage.showAndWait();
+      currentStage.setScene(scene);
+      currentStage.setTitle("Reset Password");
     } catch (Exception e) {
-      System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
+      System.err.println("Failed to switch to login-reset-view.fxml: " + e.getMessage());
     }
   }
 
   private void checkPassword() {
-
   }
 }

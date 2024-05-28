@@ -13,17 +13,17 @@
     <children>
         <ButtonBar layoutY="360.0" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <buttons>
-                <Button mnemonicParsing="false" prefWidth="70.0" text="Abort" />
-                <Button mnemonicParsing="false" prefWidth="70.0" text="Finish" />
+                <Button fx:id="abortButton" mnemonicParsing="false" onAction="#abortReset" prefWidth="70.0" text="Abort" />
+                <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishReset" prefWidth="70.0" text="Finish" />
             </buttons>
             <padding>
                 <Insets right="10.0" />
             </padding>
         </ButtonBar>
-        <TextField layoutX="160.0" layoutY="157.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter username" />
-        <PasswordField layoutX="160.0" layoutY="200.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter password" />
-        <PasswordField layoutX="160.0" layoutY="241.0" prefHeight="26.0" prefWidth="281.0" promptText="Confirm Password" />
-        <Label layoutX="332.0" layoutY="267.0" prefHeight="17.0" prefWidth="109.0" text="Passwords do not match." textFill="RED">
+        <TextField fx:id="usernameField" layoutX="160.0" layoutY="157.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter username" />
+        <PasswordField fx:id="passwordField" layoutX="160.0" layoutY="200.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter password" />
+        <PasswordField fx:id="confirmPasswordField" layoutX="160.0" layoutY="241.0" prefHeight="26.0" prefWidth="281.0" promptText="Confirm Password" />
+        <Label fx:id="passwordWarning" layoutX="332.0" layoutY="267.0" prefHeight="17.0" prefWidth="109.0" text="Passwords do not match." textFill="RED">
             <font>
                 <Font size="10.0" />
             </font>
