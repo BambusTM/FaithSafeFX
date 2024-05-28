@@ -33,10 +33,6 @@ public class ResetPwController {
   private Button abortButton;
   @FXML
   private Button finishButton;
-  
-  public void setPreviousScene(Scene previousScene) {
-    this.previousScene = previousScene;
-  }
 
   public void finishReset() {
     if (confirmPassword()) {
