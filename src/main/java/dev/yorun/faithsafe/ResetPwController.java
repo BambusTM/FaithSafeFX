@@ -35,7 +35,19 @@ public class ResetPwController {
   private Button finishButton;
 
   public void finishReset() {
-    if (confirmPassword()) {
+    if (confirmPassword() && jsonMapper.findUserByUsername(usernameField.getText()) == null) {
+      try {
+            jsonMapper.saveUserToJson(usernameField.getText(), passwordField.getText());
+            Parent root = FXMLLoader.load(
+                Objects.requireNonNull(getClass().getResource("login-view.fxml")));
+            Stage stage = (Stage)finishButton.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.err.println("Failed to reset password: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
   }
 

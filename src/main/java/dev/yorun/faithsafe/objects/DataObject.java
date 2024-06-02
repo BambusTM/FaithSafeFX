@@ -2,17 +2,20 @@ package dev.yorun.faithsafe.objects;
 
 public class DataObject {
     private int id;
+    private int ownerId;
     private String username;
     private String domain;
     private String email;
     private String password;
     private String description;
 
+    // Default constructor DO NOT DELETE
     public DataObject() {
     }
 
-    public DataObject(int id, String username, String domain, String email, String password, String description) {
+    public DataObject(int id, int ownerId, String username, String domain, String email, String password, String description) {
         this.id = id;
+        this.ownerId = ownerId;
         this.username = username;
         this.domain = domain;
         this.email = email;
@@ -27,6 +30,14 @@ public class DataObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getUsername() {

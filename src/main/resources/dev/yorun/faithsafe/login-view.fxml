@@ -15,15 +15,10 @@
                 <Font size="34.0" />
             </font>
         </Label>
-        <Button fx:id="loginButton" layoutX="365.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Login" />
+        <Button fx:id="loginButton" layoutX="365.0" layoutY="277.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="70.0" text="Login" />
         <Button fx:id="resetButton" layoutX="165.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToResetPwView" prefHeight="25.0" prefWidth="70.0" text="Reset" />
-        <TextField fx:id="username" layoutX="165.0" layoutY="174.0" prefHeight="26.0" prefWidth="270.0" promptText="username" />
-        <Label fx:id="usenameWarning" layoutX="338.0" layoutY="200.0" prefHeight="17.0" prefWidth="100.0" text="Username is incorrect." textFill="RED">
-            <font>
-                <Font size="10.0" />
-            </font>
-        </Label>
-        <Label fx:id="passwordWarning" layoutX="338.0" layoutY="245.0" prefHeight="17.0" prefWidth="100.0" text="Password is incorrect." textFill="RED">
+        <TextField fx:id="usernameField" layoutX="165.0" layoutY="174.0" prefHeight="26.0" prefWidth="270.0" promptText="username" />
+        <Label fx:id="loginWarning" layoutX="345.0" layoutY="245.0" prefHeight="17.0" prefWidth="93.0" textFill="RED">
             <font>
                 <Font size="10.0" />
             </font>

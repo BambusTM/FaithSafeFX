@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.yorun.faithsafe.objects.DataObject;
+import dev.yorun.faithsafe.objects.UserObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class JsonMapper {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String path;
     private int currentMaxId = 0;
+    private int userId = 0;
 
     public JsonMapper(String inputPath) {
         this.path = inputPath;
@@ -20,12 +23,23 @@ public class JsonMapper {
         if (!entries.isEmpty()) {
             currentMaxId = entries.stream().mapToInt(DataObject::getId).max().orElse(0);
         }
+        List<UserObject> userEntries = loadUserFromJson();
+        if (!userEntries.isEmpty()) {
+            userId = userEntries.stream().mapToInt(UserObject::getId).max().orElse(0);
+        }
     }
 
     public void saveToJson(String username, String domain, String email, String password, String description) {
         List<DataObject> entries = loadFromJson();
-        DataObject newEntry = new DataObject(++currentMaxId, username, domain, email, password, description);
+        DataObject newEntry = new DataObject(++currentMaxId, userId, username, domain, email, password, description);
         entries.add(newEntry);
+        saveToFile(entries);
+    }
+
+    public void saveUserToJson(String username, String password) {
+        List<UserObject> entries = loadUserFromJson();
+        UserObject newUser = new UserObject(++userId, username, password);
+        entries.add(newUser);
         saveToFile(entries);
     }
 
@@ -41,7 +55,19 @@ public class JsonMapper {
         return new ArrayList<>();
     }
 
-    private void saveToFile(List<DataObject> entries) {
+    public List<UserObject> loadUserFromJson() {
+        try {
+            File file = new File(path);
+            if (file.exists()) {
+                return objectMapper.readValue(file, new TypeReference<List<UserObject>>() {});
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to load existing data: " + e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    private void saveToFile(List<?> entries) {
         try {
             objectMapper.writeValue(new File(path), entries);
         } catch (IOException e) {
@@ -53,6 +79,16 @@ public class JsonMapper {
         List<DataObject> entries = loadFromJson();
         for (DataObject entry : entries) {
             if (entry.getId() == id) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public UserObject findUserByUsername(String username) {
+        List<UserObject> entries = loadUserFromJson();
+        for (UserObject entry : entries) {
+            if (entry.getUsername().equals(username)) {
                 return entry;
             }
         }

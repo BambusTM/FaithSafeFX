@@ -23,7 +23,7 @@
         <TextField fx:id="usernameField" layoutX="160.0" layoutY="157.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter username" />
         <PasswordField fx:id="passwordField" layoutX="160.0" layoutY="200.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter password" />
         <PasswordField fx:id="confirmPasswordField" layoutX="160.0" layoutY="241.0" prefHeight="26.0" prefWidth="281.0" promptText="Confirm Password" />
-        <Label fx:id="passwordWarning" layoutX="332.0" layoutY="267.0" prefHeight="17.0" prefWidth="109.0" text="Passwords do not match." textFill="RED">
+        <Label fx:id="passwordWarning" layoutX="332.0" layoutY="267.0" prefHeight="17.0" prefWidth="109.0" textFill="RED">
             <font>
                 <Font size="10.0" />
             </font>
