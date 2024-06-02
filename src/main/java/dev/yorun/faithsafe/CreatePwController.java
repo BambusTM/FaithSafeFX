@@ -51,20 +51,25 @@ public class CreatePwController {
         String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.saveToJson(username, domain, email, password, description);
-
-            if (onPasswordCreated != null) {
-                onPasswordCreated.accept(null);
-            }
-
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.close();
+                jsonMapper.saveToJson(username, domain, email, password, description);
+
+                if (onPasswordCreated != null) {
+                    onPasswordCreated.accept(null);
+                }
+
+                try {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("create-pw-view.fxml")));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.close();
+                } catch (Exception e) {
+                    System.err.println("Failed to close create-pw-view.fxml: " + e.getMessage());
+                }
             } catch (Exception e) {
-                System.err.println("Failed to close create-pw-view.fxml: " + e.getMessage());
+                System.err.println("Failed to save password: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             System.err.println("Error: Passwords do not match.");

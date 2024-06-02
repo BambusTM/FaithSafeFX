@@ -6,6 +6,7 @@ import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.objects.ListObject;
 import dev.yorun.faithsafe.service.StageService;
+import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,7 @@ public class MainController implements javafx.fxml.Initializable {
         pwListView.getItems().clear();
         List<DataObject> passwordEntries = jsonMapper.loadFromJson();
         for (DataObject entry : passwordEntries) {
+            if (entry.getOwnerId() != Variables.currentUserId) continue;
             pwListView.getItems().add(new ListObject(entry.getId(), entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail()));
         }
     }
@@ -79,7 +81,6 @@ public class MainController implements javafx.fxml.Initializable {
             System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
         }
     }
-
 
     public void switchToEditPwView() {
         try {

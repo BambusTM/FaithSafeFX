@@ -27,11 +27,12 @@ public class JsonMapper {
         if (!userEntries.isEmpty()) {
             userId = userEntries.stream().mapToInt(UserObject::getId).max().orElse(0);
         }
+
     }
 
     public void saveToJson(String username, String domain, String email, String password, String description) {
         List<DataObject> entries = loadFromJson();
-        DataObject newEntry = new DataObject(++currentMaxId, userId, username, domain, email, password, description);
+        DataObject newEntry = new DataObject(++currentMaxId, Variables.currentUserId, username, domain, email, password, description);
         entries.add(newEntry);
         saveToFile(entries);
     }

@@ -24,11 +24,9 @@ public class Application extends javafx.application.Application {
             // Image icon = new Image("src/main/resources/Safe.png");
             // stage.getIcons().add();
 
-            stage.setTitle("FaithSafe");
-            stage.setResizable(true);
+            stage.setTitle("FaithSafe - Login");
+            stage.setResizable(false);
             stage.setFullScreen(false);
-            stage.setFullScreenExitHint("Press 'ESC' to exit full screen");
-            stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("ESC"));
 
             stage.setScene(scene);
             stage.show();

@@ -8,6 +8,7 @@ import dev.yorun.faithsafe.service.StageService;
 
 import java.util.Objects;
 
+import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -38,9 +40,13 @@ public class LoginController {
     public void login(ActionEvent event) {
         try {
             if (checkCredentials()) {
+                Variables.currentUserId = jsonMapper.findUserByUsername(usernameField.getText()).getId();
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
+                stage.setTitle("FaithSafe");
+                stage.setResizable(true);
+                stage.setFullScreen(false);
                 stage.setScene(scene);
                 stage.show();
             }
