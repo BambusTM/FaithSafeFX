@@ -5,6 +5,8 @@ import static dev.yorun.faithsafe.service.Variables.USER_PATH;
 import dev.yorun.faithsafe.objects.UserObject;
 import dev.yorun.faithsafe.service.*;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 import javafx.event.ActionEvent;
@@ -19,6 +21,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class LoginController {
     private final StageService stageService = new StageService();
@@ -47,6 +53,7 @@ public class LoginController {
             if (checkCredentials()) {
                 Variables.currentUserId = findUserByUsername(usernameField.getText(), jsonMapper)
                                 .getId();
+                Variables.currentUserPassword = passwordField.getText();
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -81,12 +88,21 @@ public class LoginController {
             System.out.println("Username not found.");
             return false;
         }
-        if (passwordField.getText().equals(user.getPassword())) {
-            System.out.println("Login successful.");
-            return true;
-        } else {
-            loginWarning.setText("Invalid credentials.");
-            System.out.println("Invalid credentials.");
+
+
+
+        try {
+            if (UserObject.getHashedPassword(passwordField.getText()).equals(user.getPassword())) {
+                System.out.println("Login successful.");
+                return true;
+            } else {
+                loginWarning.setText("Invalid credentials.");
+                System.out.println("Invalid credentials.");
+                return false;
+            }
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | IllegalBlockSizeException |
+                 BadPaddingException e) {
+
             return false;
         }
     }

@@ -8,6 +8,7 @@ module dev.yorun.faithsafe {
 
     exports dev.yorun.faithsafe.service;
     exports dev.yorun.faithsafe;
+    exports dev.yorun.faithsafe.algo;
     opens dev.yorun.faithsafe to javafx.fxml;
     opens dev.yorun.faithsafe.service to com.fasterxml.jackson.databind;
   exports dev.yorun.faithsafe.objects;
