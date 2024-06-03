@@ -8,6 +8,12 @@
     -fx-font-size: 35px;
 }
 
+#header2 {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: normal;
+    -fx-font-size: 18px;
+}
+
 #bodyText {
     -fx-text-fill: #e0e0e0;
 }
@@ -19,28 +25,85 @@
 #textField {
     -fx-border-radius: 5px;
     -fx-background-color: #292929;
-    -fx-border-color: #8C0000;
+    -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
+    -fx-border-width: 1px;
     -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #e0e0e0;
 }
 
+#textField:hover {
+    -fx-background-color: rgba(41, 41, 41, 0.7);
+}
+
+#textField:focused {
+    -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
+    -fx-border-width: 2px; /* Increase border size by 1px */
+}
+
+#textArea {
+    -fx-padding: 0;
+    -fx-margin: 0;
+    -fx-border-radius: 5px;
+    -fx-background-color: #292929;
+    -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
+    -fx-border-width: 1px;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #e0e0e0;
+    -fx-control-inner-background: #292929;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+#textArea:hover {
+    -fx-background-color: rgba(41, 41, 41, 0.7);
+}
+
+#textArea:focused {
+    -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
+    -fx-border-width: 2px; /* Increase border size by 1px */
+}
+
+.text-area .content {
+    -fx-background-color: #292929; /* Background color of the content area */
+    -fx-background-radius: 5px; /* Matching border radius */
+}
+
+.text-area:focused .content {
+    -fx-background-color: #292929;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: #292929;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: #292929;
+    -fx-background-radius: 5px;
+}
+
+
 #button {
-    -fx-background-color: #8C0000;
+    -fx-background-color: linear-gradient(to bottom right, #8C0000, #FF0000);
     -fx-border-radius: 5px;
     -fx-text-fill: #e0e0e0;
 }
 
 #button:hover {
-    -fx-background-color: rgba(140, 0, 0, 0.7);
+    -fx-background-color: linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
+    -fx-border-color: linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
 
 }
 
 #buttonOutline {
     -fx-background-color: #292929;
     -fx-border-radius: 5px;
-    -fx-border-color: #8C0000;
+    -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
     -fx-text-fill: #e0e0e0;
 }
 
 #buttonOutline:hover {
-    -fx-background-color: #8C0000;
+    -fx-background-color:  linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
+    -fx-border-color: linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
 }
