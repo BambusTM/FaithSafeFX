@@ -9,24 +9,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.ResetPwController">
+<AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.ResetPwController">
     <children>
         <ButtonBar layoutY="360.0" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <buttons>
-                <Button fx:id="abortButton" mnemonicParsing="false" onAction="#abortReset" prefWidth="70.0" text="Abort" />
-                <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishReset" prefWidth="70.0" text="Finish" />
+                <Button id="button" fx:id="abortButton" mnemonicParsing="false" onAction="#abortReset" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Abort" />
+                <Button id="button" fx:id="finishButton" mnemonicParsing="false" onAction="#finishReset" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Finish" />
             </buttons>
             <padding>
                 <Insets right="10.0" />
             </padding>
         </ButtonBar>
-        <TextField fx:id="usernameField" layoutX="160.0" layoutY="157.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter username" />
-        <PasswordField fx:id="passwordField" layoutX="160.0" layoutY="200.0" prefHeight="26.0" prefWidth="281.0" promptText="Enter password" />
-        <PasswordField fx:id="confirmPasswordField" layoutX="160.0" layoutY="241.0" prefHeight="26.0" prefWidth="281.0" promptText="Confirm Password" />
-        <Label fx:id="passwordWarning" layoutX="332.0" layoutY="267.0" prefHeight="17.0" prefWidth="109.0" textFill="RED">
+        <TextField id="textField" fx:id="usernameField" layoutX="165.0" layoutY="180.0" prefHeight="35.0" prefWidth="270.0" promptText="Enter username" stylesheets="@styles/Styles.css" />
+        <PasswordField id="textField" fx:id="passwordField" layoutX="165.0" layoutY="223.0" prefHeight="35.0" prefWidth="270.0" promptText="Enter password" stylesheets="@styles/Styles.css" />
+        <PasswordField id="textField" fx:id="confirmPasswordField" layoutX="165.0" layoutY="266.0" prefHeight="35.0" prefWidth="270.0" promptText="Confirm Password" stylesheets="@styles/Styles.css" />
+        <Label id="warningText" fx:id="passwordWarning" layoutX="326.0" layoutY="302.0" prefHeight="17.0" prefWidth="109.0" stylesheets="@styles/Styles.css" textFill="RED">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
+      <Label id="header" layoutX="247.0" layoutY="56.0" stylesheets="@styles/Styles.css" text="Register a new user" />
+      <Label id="bodyText" layoutX="147.0" layoutY="91.0" stylesheets="@styles/Styles.css" text="Don't give your password to anybody, not even your dog." />
     </children>
 </AnchorPane>
