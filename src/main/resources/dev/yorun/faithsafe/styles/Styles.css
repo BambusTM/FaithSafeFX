@@ -5,6 +5,7 @@
 #header {
     -fx-text-fill: #ff5a36;
     -fx-font-weight: bolder;
+    -fx-font-size: 35px;
 }
 
 #bodyText {

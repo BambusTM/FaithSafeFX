@@ -28,7 +28,7 @@
                 <Font size="10.0" />
             </font>
         </Label>
-      <Label id="header" layoutX="247.0" layoutY="56.0" stylesheets="@styles/Styles.css" text="Register a new user" />
-      <Label id="bodyText" layoutX="147.0" layoutY="91.0" stylesheets="@styles/Styles.css" text="Don't give your password to anybody, not even your dog." />
+      <Label id="header" layoutX="158.0" layoutY="55.0" stylesheets="@styles/Styles.css" text="Register a new user" />
+      <Label id="bodyText" layoutX="147.0" layoutY="100.0" stylesheets="@styles/Styles.css" text="Don't give your password to anybody, not even your dog." />
     </children>
 </AnchorPane>
