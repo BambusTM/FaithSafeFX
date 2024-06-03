@@ -3,8 +3,11 @@ package dev.yorun.faithsafe;
 import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
 import static dev.yorun.faithsafe.service.Variables.USER_PATH;
 
+import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
+import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
+import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +24,7 @@ import java.util.function.Consumer;
 
 public class CreatePwController {
     private final StageService stageService = new StageService();
-    private final JsonMapper jsonMapper = new JsonMapper(DATA_PATH);
+    private final JsonMapper<DataObject> jsonMapper = new JsonMapper<DataObject>(JsonPath.Data);
     private Consumer<Void> onPasswordCreated;
 
     @FXML
@@ -52,7 +55,7 @@ public class CreatePwController {
 
         if (confirmPw()) {
             try {
-                jsonMapper.saveToJson(username, domain, email, password, description);
+                jsonMapper.saveToJson(new DataObject(0, Variables.currentUserId, username, domain, email, password, description));
 
                 if (onPasswordCreated != null) {
                     onPasswordCreated.accept(null);

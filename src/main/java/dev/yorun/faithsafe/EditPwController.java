@@ -1,7 +1,10 @@
 package dev.yorun.faithsafe;
 
+import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
+import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
+import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +23,7 @@ import java.util.function.Consumer;
 public class EditPwController {
 
     private final StageService stageService = new StageService();
-    private final JsonMapper jsonMapper = new JsonMapper(DATA_PATH);
+    private final JsonMapper<DataObject> jsonMapper = new JsonMapper<>(JsonPath.Data);
     private Consumer<Void> onEditSave;
     private int id;
 
@@ -84,7 +87,7 @@ public class EditPwController {
         String description = createPwDescription.getText();
 
         if (confirmPw()) {
-            jsonMapper.updateEntry(id, username, domain, email, password, description);
+            jsonMapper.updateEntry(id, new DataObject(id, Variables.currentUserId, username, domain, email, password, description));
 
             if (onEditSave != null) {
                 onEditSave.accept(null);

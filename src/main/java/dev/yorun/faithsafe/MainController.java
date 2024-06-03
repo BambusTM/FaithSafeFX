@@ -5,6 +5,7 @@ import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
 import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.objects.ListObject;
+import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements javafx.fxml.Initializable {
-    private final JsonMapper jsonMapper = new JsonMapper(DATA_PATH);
+    private final JsonMapper<DataObject> jsonMapper = new JsonMapper<>(JsonPath.Data);
     private final StageService stageService = new StageService();
 
     @FXML

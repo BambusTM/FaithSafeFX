@@ -1,8 +1,11 @@
 package dev.yorun.faithsafe;
 
+import static dev.yorun.faithsafe.LoginController.findUserByUsername;
 import static dev.yorun.faithsafe.service.Variables.USER_PATH;
 
+import dev.yorun.faithsafe.objects.UserObject;
 import dev.yorun.faithsafe.service.JsonMapper;
+import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 
 import java.util.Objects;
@@ -21,7 +24,7 @@ import javafx.stage.Stage;
 
 public class ResetPwController {
     private final StageService stageService = new StageService();
-    private final JsonMapper jsonMapper = new JsonMapper(USER_PATH);
+    private final JsonMapper<UserObject> jsonMapper = new JsonMapper<>(JsonPath.User);
 
     @FXML
     private TextField usernameField;
@@ -37,9 +40,9 @@ public class ResetPwController {
     private Button finishButton;
 
     public void finishReset() {
-        if (confirmPassword() && jsonMapper.findUserByUsername(usernameField.getText()) == null) {
+        if (confirmPassword() && findUserByUsername(usernameField.getText(), jsonMapper) == null) {
             try {
-                jsonMapper.saveUserToJson(usernameField.getText(), passwordField.getText());
+                jsonMapper.saveToJson(new UserObject(0, usernameField.getText(), passwordField.getText()));
                 Parent root = FXMLLoader.load(
                         Objects.requireNonNull(getClass().getResource("login-view.fxml")));
                 Stage stage = (Stage) finishButton.getScene().getWindow();
@@ -50,7 +53,7 @@ public class ResetPwController {
                 System.err.println("Failed to reset password: " + e.getMessage());
                 e.printStackTrace();
             }
-        } else if (jsonMapper.findUserByUsername(usernameField.getText()) != null) {
+        } else if (findUserByUsername(usernameField.getText(), jsonMapper) != null) {
             passwordWarning.setText("Username already exists.");
         }
     }
