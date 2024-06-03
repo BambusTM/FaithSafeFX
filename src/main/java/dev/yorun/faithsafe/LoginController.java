@@ -3,12 +3,10 @@ package dev.yorun.faithsafe;
 import static dev.yorun.faithsafe.service.Variables.USER_PATH;
 
 import dev.yorun.faithsafe.objects.UserObject;
-import dev.yorun.faithsafe.service.JsonMapper;
-import dev.yorun.faithsafe.service.StageService;
+import dev.yorun.faithsafe.service.*;
 
 import java.util.Objects;
 
-import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +22,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
     private final StageService stageService = new StageService();
-    private final JsonMapper jsonMapper = new JsonMapper(USER_PATH);
+    private final JsonMapper<UserObject> jsonMapper = new JsonMapper<UserObject>(JsonPath.User);
 
     @FXML
     private TextField usernameField;
@@ -37,10 +35,18 @@ public class LoginController {
     @FXML
     private Button resetButton;
 
+    public static UserObject findUserByUsername(String username, JsonMapper<UserObject> jsonMapper) {
+        return jsonMapper.loadFromJson().stream()
+                .filter(entry -> entry.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void login(ActionEvent event) {
         try {
             if (checkCredentials()) {
-                Variables.currentUserId = jsonMapper.findUserByUsername(usernameField.getText()).getId();
+                Variables.currentUserId = findUserByUsername(usernameField.getText(), jsonMapper)
+                                .getId();
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -69,7 +75,7 @@ public class LoginController {
     }
 
     private boolean checkCredentials() {
-        UserObject user = jsonMapper.findUserByUsername(usernameField.getText());
+        UserObject user = findUserByUsername(usernameField.getText(), jsonMapper);
         if (user == null) {
             loginWarning.setText("Username not found.");
             System.out.println("Username not found.");

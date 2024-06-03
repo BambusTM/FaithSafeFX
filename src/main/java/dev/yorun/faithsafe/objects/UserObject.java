@@ -1,6 +1,8 @@
 package dev.yorun.faithsafe.objects;
 
-public class UserObject {
+import dev.yorun.faithsafe.service.BasicJson;
+
+public class UserObject extends BasicJson {
   private int id;
   private String username;
   private String password;
