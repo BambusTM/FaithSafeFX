@@ -66,10 +66,10 @@ public class FaithSafeEncryption {
             byte[] encryptedData = cipher.doFinal(data);
 
             // Combine salt, IV, and encrypted data
-            byte[] encryptedDataWithSaltAndIv = new byte[salt.length + iv.length + encryptedData.length];
-            System.arraycopy(salt, 0, encryptedDataWithSaltAndIv, 0, salt.length);
-            System.arraycopy(iv, 0, encryptedDataWithSaltAndIv, salt.length, iv.length);
-            System.arraycopy(encryptedData, 0, encryptedDataWithSaltAndIv, salt.length + iv.length, encryptedData.length);
+            byte[] encryptedDataWithSaltAndIv = new byte[SALT_SIZE + IV_SIZE + encryptedData.length];
+            System.arraycopy(salt, 0, encryptedDataWithSaltAndIv, 0, SALT_SIZE);
+            System.arraycopy(iv, 0, encryptedDataWithSaltAndIv, salt.length, IV_SIZE);
+            System.arraycopy(encryptedData, 0, encryptedDataWithSaltAndIv, SALT_SIZE + IV_SIZE, encryptedData.length);
 
             return encryptedDataWithSaltAndIv;
         } catch (Exception e) {
@@ -83,11 +83,11 @@ public class FaithSafeEncryption {
             // Extract salt and IV
             byte[] salt = new byte[SALT_SIZE];
             byte[] iv = new byte[IV_SIZE];
-            byte[] encryptedData = new byte[encryptedDataWithSaltAndIv.length - salt.length - iv.length];
+            byte[] encryptedData = new byte[encryptedDataWithSaltAndIv.length - SALT_SIZE - IV_SIZE];
 
-            System.arraycopy(encryptedDataWithSaltAndIv, 0, salt, 0, salt.length);
-            System.arraycopy(encryptedDataWithSaltAndIv, salt.length, iv, 0, iv.length);
-            System.arraycopy(encryptedDataWithSaltAndIv, salt.length + iv.length, encryptedData, 0, encryptedData.length);
+            System.arraycopy(encryptedDataWithSaltAndIv, 0, salt, 0, SALT_SIZE);
+            System.arraycopy(encryptedDataWithSaltAndIv, salt.length, iv, 0, IV_SIZE);
+            System.arraycopy(encryptedDataWithSaltAndIv, SALT_SIZE + IV_SIZE, encryptedData, 0, encryptedData.length);
 
             // Get key from password and salt
             SecretKeySpec key = getKeyFromPassword(password, salt);

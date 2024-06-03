@@ -12,6 +12,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated()
 public class JsonMapperOld {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String path;
@@ -40,6 +41,7 @@ public class JsonMapperOld {
 
     public void saveUserToJson(String username, String password) {
         List<UserObject> entries = loadUserFromJson();
+        // DO NOT USE THIS FUNCTION ANYMORE
         UserObject newUser = new UserObject(++userId, username, password);
         entries.add(newUser);
         saveToFile(entries);

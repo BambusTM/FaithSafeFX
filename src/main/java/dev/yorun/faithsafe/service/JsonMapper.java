@@ -1,13 +1,18 @@
 package dev.yorun.faithsafe.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.yorun.faithsafe.algo.FaithSafeEncryption;
+import dev.yorun.faithsafe.objects.UserObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonMapper<T extends BasicJson> {
+    public FaithSafeEncryption encryption = new FaithSafeEncryption();
     public JsonPath path;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -61,11 +66,19 @@ public class JsonMapper<T extends BasicJson> {
         try {
             File file = new File(path.path);
 
-            if (file.exists()) {
-                return (List<T>) objectMapper.readValue(file, this.path.typeReference);
+            if (!file.exists()) {
+                return new ArrayList<>();
             }
-        } catch (IOException e) {
-            System.err.println("Could not load data");
+
+            if (path.encrypted) {
+                String bytes = Files.readString(file.toPath());
+                String data = encryption.decrypt(bytes, Variables.currentUserPassword);
+                return (List<T>) objectMapper.readValue(data, this.path.typeReference);
+            }
+
+            return (List<T>) objectMapper.readValue(file, this.path.typeReference);
+        } catch (IOException | FaithSafeEncryption.DecryptionException e) {
+            System.err.println("Failed to load data from Json");
             e.printStackTrace();
         }
 
@@ -74,7 +87,29 @@ public class JsonMapper<T extends BasicJson> {
 
     private void saveToFile(List<T> entries) {
         try {
-            objectMapper.writeValue(new File(path.path), entries);
+            if (!path.encrypted) {
+                objectMapper.writeValue(new File(path.path), entries);
+            } else {
+                StringWriter stringWriter = new StringWriter();
+                objectMapper.writeValue(stringWriter, entries);
+                String data = stringWriter.toString();
+                stringWriter.close();
+
+                try {
+                    var encryptedData = encryption.encrypt(data,
+                            Variables.currentUserPassword
+                    );
+
+                    var file = new File(path.path);
+                    Files.writeString(file.toPath(), encryptedData);
+//                    try(var writer = new FileWriter(file)) {
+//                        writer.write(new String(newBytes));
+//                        System.out.println(new String(newBytes));
+//                    }
+                } catch (FaithSafeEncryption.EncryptionException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         } catch (IOException e) {
             System.err.println("Could not load data");
             e.printStackTrace();

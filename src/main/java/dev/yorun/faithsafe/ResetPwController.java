@@ -8,8 +8,10 @@ import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 
+import java.security.spec.KeySpec;
 import java.util.Objects;
 
+import dev.yorun.faithsafe.service.Variables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
 
 public class ResetPwController {
     private final StageService stageService = new StageService();
@@ -42,7 +48,12 @@ public class ResetPwController {
     public void finishReset() {
         if (confirmPassword() && findUserByUsername(usernameField.getText(), jsonMapper) == null) {
             try {
-                jsonMapper.saveToJson(new UserObject(0, usernameField.getText(), passwordField.getText()));
+
+                var object = new UserObject(0, usernameField.getText(), passwordField.getText());
+                Variables.currentUserPassword = object.getPassword();
+                object.setPassword(UserObject.getHashedPassword(object.getPassword()));
+
+                jsonMapper.saveToJson(object);
                 Parent root = FXMLLoader.load(
                         Objects.requireNonNull(getClass().getResource("login-view.fxml")));
                 Stage stage = (Stage) finishButton.getScene().getWindow();
