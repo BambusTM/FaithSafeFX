@@ -10,16 +10,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.MainController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="background" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar prefHeight="40.0" prefWidth="800.0">
+            <ToolBar id="background2" prefHeight="40.0" prefWidth="800.0" stylesheets="@styles/Styles.css">
               <items>
-                <Button mnemonicParsing="false" onAction="#switchToCreatePwView" prefHeight="25.0" prefWidth="70.0" text="Create" />
-                  <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToEditPwView" prefHeight="25.0" prefWidth="70.0" text="Edit" />
-                  <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#deletePassword" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+                <Button id="button" mnemonicParsing="false" onAction="#switchToCreatePwView" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Create" />
+                  <Button id="button" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToEditPwView" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Edit" />
+                  <Button id="button" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#deletePassword" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Delete" />
               </items>
             </ToolBar>
-            <Label fx:id="pwPreviewLabel" alignment="CENTER" prefHeight="40.0" prefWidth="800.0" text="No password selected...">
+            <Label id="header" fx:id="pwPreviewLabel" alignment="CENTER" prefHeight="40.0" prefWidth="800.0" stylesheets="@styles/Styles.css" text="No password selected...">
                <font>
                   <Font size="36.0" />
                </font>

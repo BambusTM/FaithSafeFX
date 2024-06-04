@@ -1,5 +1,10 @@
 #background {
     -fx-background-color: #1A1A1A;
+    -fx-text-fill: #ff5a36;
+}
+
+#background2 {
+    -fx-background-color: #292929;
 }
 
 #header {
@@ -107,3 +112,5 @@
     -fx-background-color:  linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
     -fx-border-color: linear-gradient(to bottom right, rgba(140, 0, 0, 0.7), rgba(255, 0, 0, 0.7));
 }
+
+

@@ -49,7 +49,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="208.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Validate:">
+      <Label id="header2" layoutX="66.0" layoutY="208.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Confirm:">
          <font>
             <Font size="18.0" />
          </font>
@@ -58,7 +58,7 @@
       <TextField id="textField" fx:id="createPwDomain" layoutX="226.0" layoutY="105.0" prefHeight="30.0" prefWidth="292.0" promptText="www.example.com" stylesheets="@styles/Styles.css" />
       <TextField id="textField" fx:id="createPwEmail" layoutX="226.0" layoutY="140.0" prefHeight="30.0" prefWidth="292.0" promptText="example@exmp.com" stylesheets="@styles/Styles.css" />
       <TextField id="textField" fx:id="createPwPassword" layoutX="226.0" layoutY="175.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="292.0" promptText="Password" stylesheets="@styles/Styles.css" />
-      <TextField id="textField" fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="210.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="292.0" promptText="Password" stylesheets="@styles/Styles.css" />
+      <TextField id="textField" fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="210.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="292.0" promptText="Confirm password" stylesheets="@styles/Styles.css" />
       <Label id="warningText" fx:id="createPwWarning" layoutX="368.0" layoutY="240.0" prefHeight="17.0" prefWidth="150.0" stylesheets="@styles/Styles.css" textAlignment="RIGHT" textFill="RED" />
       <TextArea id="textArea" fx:id="createPwDescription" layoutX="226.0" layoutY="257.0" prefHeight="90.0" prefWidth="292.0" promptText="Ex.: Delete after at the of subscription..." stylesheets="@styles/Styles.css" />
       <Label id="header2" layoutX="66.0" layoutY="257.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Memo:">
