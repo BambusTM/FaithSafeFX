@@ -11,13 +11,13 @@
 
 <AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.yorun.faithsafe.LoginController">
     <children>
-        <PasswordField id="textField" fx:id="passwordField" layoutX="166.0" layoutY="243.0" prefHeight="35.0" prefWidth="270.0" promptText="password" stylesheets="@styles/Styles.css" />
+        <PasswordField id="textField" fx:id="passwordField" layoutX="166.0" layoutY="243.0" prefHeight="35.0" prefWidth="270.0" promptText="Password" stylesheets="@styles/Styles.css" />
         <Label id="header" layoutX="230.0" layoutY="55.0" stylesheets="@styles/Styles.css" text="FaithSave">
             <font>
                 <Font size="34.0" />
             </font>
         </Label>
-        <TextField id="textField" fx:id="usernameField" layoutX="166.0" layoutY="200.0" prefHeight="35.0" prefWidth="269.0" promptText="username" stylesheets="@styles/Styles.css" />
+        <TextField id="textField" fx:id="usernameField" layoutX="166.0" layoutY="200.0" prefHeight="35.0" prefWidth="269.0" promptText="Username" stylesheets="@styles/Styles.css" />
         <Label id="warningText" fx:id="loginWarning" layoutX="342.0" layoutY="278.0" prefHeight="17.0" prefWidth="93.0" stylesheets="@styles/Styles.css" textFill="RED">
             <font>
                 <Font size="10.0" />

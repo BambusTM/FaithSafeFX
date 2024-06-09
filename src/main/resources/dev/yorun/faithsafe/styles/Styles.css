@@ -13,6 +13,12 @@
     -fx-font-size: 35px;
 }
 
+#header1 {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 23px;
+}
+
 #header2 {
     -fx-text-fill: #e0e0e0;
     -fx-font-weight: normal;

@@ -41,7 +41,11 @@ public class MainController implements javafx.fxml.Initializable {
     @FXML
     private TableColumn<ListObject, String> passwordColumn;
     @FXML
-    private Label pwPreviewLabel;
+    private Label pwPreviewLabel1;
+    @FXML
+    private Label pwPreviewLabel2;
+    @FXML
+    private Label pwPreviewLabel3;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -53,7 +57,9 @@ public class MainController implements javafx.fxml.Initializable {
         refreshPasswordList();
 
         pwTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            pwPreviewLabel.setText(newValue == null ? "No password selected..." : newValue.toString());
+            pwPreviewLabel1.setText(newValue == null ? "" : usernameColumn.getCellData(newValue));
+            pwPreviewLabel2.setText(newValue == null ? "" : emailColumn.getCellData(newValue));
+            pwPreviewLabel3.setText(newValue == null ? "" : passwordColumn.getCellData(newValue));
         });
     }
 

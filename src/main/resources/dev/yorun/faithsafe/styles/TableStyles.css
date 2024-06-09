@@ -32,10 +32,6 @@
     -fx-background-color: rgba(41, 41, 41, 0.7);
 }
 
-#tableView .table-row-cell:focused {
-    -fx-background-color: #292929;
-}
-
 #tableView .scroll-bar {
     -fx-background-color: #292929;
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -27,22 +28,25 @@
                                 </ToolBar>
                                 <HBox prefHeight="58.0" prefWidth="800.0">
                                     <children>
-                                        <Label id="header" fx:id="pwPreviewLabel" alignment="CENTER" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css" text="No password selected...">
+                                        <Label id="header2" fx:id="pwPreviewLabel1" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css">
                                             <font>
                                                 <Font size="36.0" />
                                             </font>
                                         </Label>
-                                        <Label id="header" fx:id="pwPreviewLabel1" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css" text="No password selected...">
+                                        <Label id="header2" fx:id="pwPreviewLabel2" layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css">
                                             <font>
                                                 <Font size="36.0" />
                                             </font>
                                         </Label>
-                                        <Label id="header" fx:id="pwPreviewLabel11" alignment="CENTER" layoutX="410.0" layoutY="10.0" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css" text="No password selected...">
+                                        <Label id="header2" fx:id="pwPreviewLabel3" layoutX="410.0" layoutY="10.0" prefHeight="51.0" prefWidth="889.0" stylesheets="@styles/Styles.css">
                                             <font>
                                                 <Font size="36.0" />
                                             </font>
                                         </Label>
                                     </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
                                 </HBox>
                             </children>
                         </VBox>
@@ -52,7 +56,7 @@
                     <children>
                         <VBox id="background" prefHeight="500.0" prefWidth="146.0" stylesheets="@styles/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <TableView id="tableView" fx:id="pwTableView" prefHeight="500.0" prefWidth="800.0" stylesheets="@styles/TableStyles.css" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" VBox.vgrow="ALWAYS">
+                                <TableView id="tableView" fx:id="pwTableView" prefHeight="500.0" prefWidth="800.0" stylesheets="@styles/TableStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                     <columnResizePolicy>
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
@@ -64,6 +68,9 @@
                                     </columns>
                                 </TableView>
                             </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
                         </VBox>
                     </children>
                 </AnchorPane>

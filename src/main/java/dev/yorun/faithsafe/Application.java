@@ -27,7 +27,6 @@ public class Application extends javafx.application.Application {
             stage.setTitle("FaithSafe - Login");
             stage.setResizable(false);
             stage.setFullScreen(false);
-
             stage.setScene(scene);
             stage.show();
 
