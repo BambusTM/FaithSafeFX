@@ -42,7 +42,7 @@
 
 #textField:focused {
     -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
-    -fx-border-width: 2px; /* Increase border size by 1px */
+    -fx-border-width: 2px;
 }
 
 #textArea {
@@ -65,12 +65,12 @@
 
 #textArea:focused {
     -fx-border-color: linear-gradient(to bottom right, #8C0000, #FF0000);
-    -fx-border-width: 2px; /* Increase border size by 1px */
+    -fx-border-width: 2px;
 }
 
 .text-area .content {
-    -fx-background-color: #292929; /* Background color of the content area */
-    -fx-background-radius: 5px; /* Matching border radius */
+    -fx-background-color: #292929;
+    -fx-background-radius: 5px;
 }
 
 .text-area:focused .content {
