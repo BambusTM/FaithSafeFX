@@ -8,6 +8,7 @@ import dev.yorun.faithsafe.objects.ListObject;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 import dev.yorun.faithsafe.service.Variables;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,27 +31,40 @@ public class MainController implements javafx.fxml.Initializable {
     private final StageService stageService = new StageService();
 
     @FXML
-    private ListView<ListObject> pwListView;
+    private TableView<ListObject> pwTableView;
+    @FXML
+    private TableColumn<ListObject, String> usernameColumn;
+    @FXML
+    private TableColumn<ListObject, String> domainColumn;
+    @FXML
+    private TableColumn<ListObject, String> emailColumn;
+    @FXML
+    private TableColumn<ListObject, String> passwordColumn;
     @FXML
     private Label pwPreviewLabel;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        usernameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
+        domainColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDomain()));
+        emailColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+        passwordColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
+
         refreshPasswordList();
-        pwListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            pwPreviewLabel.setText(newValue == null ? "No password selected..." : newValue.toString()); // source: Togira
+
+        pwTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            pwPreviewLabel.setText(newValue == null ? "No password selected..." : newValue.toString());
         });
     }
 
     private void refreshPasswordList() {
-        pwListView.getItems().clear();
+        pwTableView.getItems().clear();
         List<DataObject> passwordEntries = jsonMapper.loadFromJson();
         for (DataObject entry : passwordEntries) {
             if (entry.getOwnerId() != Variables.currentUserId) continue;
-            pwListView.getItems().add(new ListObject(entry.getId(), entry.getUsername() + " - " + entry.getDomain() + " - " + entry.getEmail()));
+            pwTableView.getItems().add(new ListObject(entry.getId(), entry.getUsername(), entry.getDomain(), entry.getEmail(), entry.getPassword()));
         }
     }
-
     public void switchToCreatePwView() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("create-pw-view.fxml"));
@@ -89,8 +105,8 @@ public class MainController implements javafx.fxml.Initializable {
             Parent root = loader.load();
 
             EditPwController editPwController = loader.getController();
-            if (pwListView.getSelectionModel().getSelectedItem() == null) return;
-            ListObject item = pwListView.getSelectionModel().getSelectedItem();
+            if (pwTableView.getSelectionModel().getSelectedItem() == null) return;
+            ListObject item = pwTableView.getSelectionModel().getSelectedItem();
             DataObject data = jsonMapper.findById(item.getId());
             editPwController.init(
                 item.getId(),
@@ -131,7 +147,7 @@ public class MainController implements javafx.fxml.Initializable {
     }
 
     public void deletePassword(ActionEvent event) {
-        ListObject selectedEntry = pwListView.getSelectionModel().getSelectedItem();
+        ListObject selectedEntry = pwTableView.getSelectionModel().getSelectedItem();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         if (selectedEntry != null) {
