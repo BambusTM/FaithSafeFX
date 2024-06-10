@@ -21,8 +21,8 @@ public class Application extends javafx.application.Application {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-view.fxml")));
             Scene scene = new Scene(root);
 
-            // Image icon = new Image("src/main/resources/Safe.png");
-            // stage.getIcons().add();
+             Image icon = new Image("logo.png");
+             stage.getIcons().add(icon);
 
             stage.setTitle("FaithSafe - Login");
             stage.setResizable(false);
