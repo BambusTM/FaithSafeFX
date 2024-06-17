@@ -1,6 +1,7 @@
 package dev.yorun.faithsafe;
 
 import dev.yorun.faithsafe.objects.DataObject;
+import dev.yorun.faithsafe.service.GeneratePassword;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
@@ -107,7 +108,6 @@ public class EditPwController {
         }
     }
 
-
     public boolean confirmPw() {
         if (Objects.equals(createPwPassword.getText(), createPwConfirmPassword.getText())) {
             createPwWarning.setText("");
@@ -116,5 +116,11 @@ public class EditPwController {
             createPwWarning.setText("Passwords do not match.");
             return false;
         }
+    }
+
+    public void setPassword() {
+        GeneratePassword gP = new GeneratePassword();
+        createPwPassword.setText(gP.generatePassword());
+        createPwConfirmPassword.setText(createPwPassword.getText());
     }
 }
