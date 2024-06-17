@@ -8,6 +8,7 @@ import dev.yorun.faithsafe.service.StageService;
 import dev.yorun.faithsafe.service.Variables;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -19,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.DataFormat;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -183,6 +186,10 @@ public class MainController implements javafx.fxml.Initializable {
     } catch (Exception e) {
       System.err.println("Failed to switch to login-view.fxml: " + e.getMessage());
     }
+  }
+
+  public void copyPassword() {
+    Clipboard.getSystemClipboard().setContent(Map.of(DataFormat.PLAIN_TEXT, pwPreviewLabel3.getText()));
   }
 
   private void refreshPasswordList() {

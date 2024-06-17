@@ -47,7 +47,7 @@
                                         </Label>
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                 <buttons>
-                                  <Button id="button" mnemonicParsing="false" stylesheets="@styles/Styles.css" text="Copy" />
+                                  <Button id="button" mnemonicParsing="false" onAction="#copyPassword" stylesheets="@styles/Styles.css" text="Copy" />
                                 </buttons>
                               </ButtonBar>
                                     </children>
