@@ -26,6 +26,10 @@ public enum JsonPath {
         this.typeReference = typeReference;
     }
 
+    public void updatePath(String path) {
+        this.path = path;
+    }
+
     <T> Class<T> getClazz() {
         return (Class<T>) this.clazz;
     }
