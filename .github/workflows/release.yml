@@ -61,9 +61,9 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build with Gradle Wrapper
       run: ./gradlew jpackage
-      if: matrix.config.os == "ubuntu-latest"
+      if: matrix.config.os == 'ubuntu-latest'
     - name: Build with Gradle Wrapper windows
-      if: matrix.config.os == "windows-latest"
+      if: matrix.config.os == 'windows-latest'
       run: ./gradlew.bat jpackage
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
