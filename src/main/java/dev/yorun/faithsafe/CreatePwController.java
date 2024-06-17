@@ -109,5 +109,6 @@ public class CreatePwController {
     public void setPassword() {
         GeneratePassword gP = new GeneratePassword();
         createPwPassword.setText(gP.generatePassword());
+        createPwConfirmPassword.setText(createPwPassword.getText());
     }
 }
