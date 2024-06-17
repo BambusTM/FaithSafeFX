@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1.14.0
+        uses: ncipollo/release-action@v1.14.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -29,7 +29,6 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          generateReleaseNotes: true
 
   release_assets:
     needs: create_release
