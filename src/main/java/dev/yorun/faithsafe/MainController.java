@@ -1,13 +1,14 @@
 package dev.yorun.faithsafe;
 
-import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
-
 import dev.yorun.faithsafe.objects.DataObject;
-import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.objects.ListObject;
+import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 import dev.yorun.faithsafe.service.Variables;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,163 +17,185 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 public class MainController implements javafx.fxml.Initializable {
-    private final JsonMapper<DataObject> jsonMapper = new JsonMapper<>(JsonPath.Data);
-    private final StageService stageService = new StageService();
+  private final JsonMapper<DataObject> jsonMapper = new JsonMapper<>(JsonPath.Data);
+  private final StageService stageService = new StageService();
 
-    @FXML
-    private TableView<ListObject> pwTableView;
-    @FXML
-    private TableColumn<ListObject, String> usernameColumn;
-    @FXML
-    private TableColumn<ListObject, String> domainColumn;
-    @FXML
-    private TableColumn<ListObject, String> emailColumn;
-    @FXML
-    private TableColumn<ListObject, String> passwordColumn;
-    @FXML
-    private Label pwPreviewLabel1;
-    @FXML
-    private Label pwPreviewLabel2;
-    @FXML
-    private Label pwPreviewLabel3;
+  @FXML
+  private TableView<ListObject> pwTableView;
+  @FXML
+  private TableColumn<ListObject, String> usernameColumn;
+  @FXML
+  private TableColumn<ListObject, String> domainColumn;
+  @FXML
+  private TableColumn<ListObject, String> emailColumn;
+  @FXML
+  private TableColumn<ListObject, String> passwordColumn;
+  @FXML
+  private Label pwPreviewLabel1;
+  @FXML
+  private Label pwPreviewLabel2;
+  @FXML
+  private Label pwPreviewLabel3;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        usernameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
-        domainColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDomain()));
-        emailColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
-        passwordColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    usernameColumn.setCellValueFactory(
+        cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
+    domainColumn.setCellValueFactory(
+        cellData -> new SimpleStringProperty(cellData.getValue().getDomain()));
+    emailColumn.setCellValueFactory(
+        cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+    passwordColumn.setCellValueFactory(
+        cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
 
-        refreshPasswordList();
+    refreshPasswordList();
 
-        pwTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            pwPreviewLabel1.setText(newValue == null ? "" : usernameColumn.getCellData(newValue));
-            pwPreviewLabel2.setText(newValue == null ? "" : emailColumn.getCellData(newValue));
-            pwPreviewLabel3.setText(newValue == null ? "" : passwordColumn.getCellData(newValue));
+    pwTableView.getSelectionModel().selectedItemProperty()
+        .addListener((observable, oldValue, newValue) -> {
+          pwPreviewLabel1.setText(newValue == null ? "" : usernameColumn.getCellData(newValue));
+          pwPreviewLabel2.setText(newValue == null ? "" : emailColumn.getCellData(newValue));
+          pwPreviewLabel3.setText(newValue == null ? "" : passwordColumn.getCellData(newValue));
         });
-    }
+  }
 
-    private void refreshPasswordList() {
-        pwTableView.getItems().clear();
-        List<DataObject> passwordEntries = jsonMapper.loadFromJson();
-        for (DataObject entry : passwordEntries) {
-            if (entry.getOwnerId() != Variables.currentUserId) continue;
-            pwTableView.getItems().add(new ListObject(entry.getId(), entry.getUsername(), entry.getDomain(), entry.getEmail(), entry.getPassword()));
-        }
-    }
-    public void switchToCreatePwView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("create-pw-view.fxml"));
-            Parent root = loader.load();
+  public void switchToCreatePwView() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("create-pw-view.fxml"));
+      Parent root = loader.load();
 
-            CreatePwController createPwController = loader.getController();
-            createPwController.setOnPasswordCreated(aVoid -> refreshPasswordList());
+      CreatePwController createPwController = loader.getController();
+      createPwController.setOnPasswordCreated(aVoid -> refreshPasswordList());
 
-            Stage popupStage = new Stage();
-            Scene scene = new Scene(root);
+      Stage popupStage = new Stage();
+      Scene scene = new Scene(root);
 
-            popupStage.setTitle("Create Password");
-            popupStage.setResizable(false);
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setScene(scene);
+      popupStage.setTitle("Create Password");
+      popupStage.setResizable(false);
+      popupStage.initModality(Modality.APPLICATION_MODAL);
+      popupStage.setScene(scene);
 
-            popupStage.setOnCloseRequest(e -> {
-                e.consume();
-                stageService.conformationPopup(popupStage,
-                        "Cancel",
-                        "Cancel Confirmation",
-                        "Are you sure you want to cancel your creation? All data will be lost.",
-                        confirmed -> {
-                            if (confirmed) {
-                                popupStage.close();
-                            }
-                        });
+      popupStage.setOnCloseRequest(e -> {
+        e.consume();
+        stageService.conformationPopup(popupStage,
+            "Cancel",
+            "Cancel Confirmation",
+            "Are you sure you want to cancel your creation? All data will be lost.",
+            confirmed -> {
+              if (confirmed) {
+                popupStage.close();
+              }
             });
-            popupStage.showAndWait();
-        } catch (Exception e) {
-            System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
-        }
+      });
+      popupStage.showAndWait();
+    } catch (Exception e) {
+      System.err.println("Failed to switch to create-pw-view.fxml: " + e.getMessage());
     }
+  }
 
-    public void switchToEditPwView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-pw-view.fxml"));
-            Parent root = loader.load();
+  public void switchToEditPwView() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-pw-view.fxml"));
+      Parent root = loader.load();
 
-            EditPwController editPwController = loader.getController();
-            if (pwTableView.getSelectionModel().getSelectedItem() == null) return;
-            ListObject item = pwTableView.getSelectionModel().getSelectedItem();
-            DataObject data = jsonMapper.findById(item.getId());
-            editPwController.init(
-                item.getId(),
-                    data.getUsername(),
-                    data.getDomain(),
-                    data.getEmail(),
-                    data.getPassword(),
-                    "",
-                    data.getDescription()
-            );
-            editPwController.setOnEditSave(aVoid -> refreshPasswordList());
+      EditPwController editPwController = loader.getController();
+      if (pwTableView.getSelectionModel().getSelectedItem() == null) {
+        return;
+      }
+      ListObject item = pwTableView.getSelectionModel().getSelectedItem();
+      DataObject data = jsonMapper.findById(item.getId());
+      editPwController.init(
+          item.getId(),
+          data.getUsername(),
+          data.getDomain(),
+          data.getEmail(),
+          data.getPassword(),
+          "",
+          data.getDescription()
+      );
+      editPwController.setOnEditSave(aVoid -> refreshPasswordList());
 
 
-            Stage popupStage = new Stage();
-            Scene scene = new Scene(root);
+      Stage popupStage = new Stage();
+      Scene scene = new Scene(root);
 
-            popupStage.setTitle("Edit Password");
-            popupStage.setResizable(false);
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setScene(scene);
+      popupStage.setTitle("Edit Password");
+      popupStage.setResizable(false);
+      popupStage.initModality(Modality.APPLICATION_MODAL);
+      popupStage.setScene(scene);
 
-            popupStage.setOnCloseRequest(e -> {
-                e.consume();
-                stageService.conformationPopup(popupStage,
-                        "Edit",
-                        "Cancel Confirmation",
-                        "Are you sure you want to cancel your creation? All data will be lost.",
-                        confirmed -> {
-                            if (confirmed) {
-                                popupStage.close();
-                            }
-                        });
+      popupStage.setOnCloseRequest(e -> {
+        e.consume();
+        stageService.conformationPopup(popupStage,
+            "Edit",
+            "Cancel Confirmation",
+            "Are you sure you want to cancel your creation? All data will be lost.",
+            confirmed -> {
+              if (confirmed) {
+                popupStage.close();
+              }
             });
-            popupStage.showAndWait();
-        } catch (Exception e) {
-            System.err.println("Failed to switch to edit-pw-view.fxml: " + e.getMessage());
-        }
+      });
+      popupStage.showAndWait();
+    } catch (Exception e) {
+      System.err.println("Failed to switch to edit-pw-view.fxml: " + e.getMessage());
     }
+  }
 
-    public void deletePassword(ActionEvent event) {
-        ListObject selectedEntry = pwTableView.getSelectionModel().getSelectedItem();
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+  public void deletePassword(ActionEvent event) {
+    ListObject selectedEntry = pwTableView.getSelectionModel().getSelectedItem();
+    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        if (selectedEntry != null) {
-            int id = selectedEntry.getId();
+    if (selectedEntry != null) {
+      int id = selectedEntry.getId();
 
-            stageService.conformationPopup(currentStage,
-                    "Delete Password",
-                    "Delete Confirmation",
-                    "Are you sure you want delete this Password? You won't be able to recover it.",
-                    confirmed -> {
-                        if (confirmed) {
-                            jsonMapper.deleteEntry(id);
-                            refreshPasswordList();
-                        }
-                    });
-        }
+      stageService.conformationPopup(currentStage,
+          "Delete Password",
+          "Delete Confirmation",
+          "Are you sure you want delete this Password? You won't be able to recover it.",
+          confirmed -> {
+            if (confirmed) {
+              jsonMapper.deleteEntry(id);
+              refreshPasswordList();
+            }
+          });
     }
+  }
 
-    public void onEdit(ListView.EditEvent<ListObject> editEvent) {
+  public void logout(ActionEvent event) {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+      Parent root = loader.load();
 
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Scene scene = new Scene(root);
+
+      stage.setTitle("FaithSafe - Login");
+      stage.setResizable(false);
+      stage.setFullScreen(false);
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      System.err.println("Failed to switch to login-view.fxml: " + e.getMessage());
     }
+  }
+
+  private void refreshPasswordList() {
+    pwTableView.getItems().clear();
+    List<DataObject> passwordEntries = jsonMapper.loadFromJson();
+    for (DataObject entry : passwordEntries) {
+      if (entry.getOwnerId() != Variables.currentUserId) {
+        continue;
+      }
+      pwTableView.getItems().add(
+          new ListObject(entry.getId(), entry.getUsername(), entry.getDomain(),
+              entry.getEmail(), entry.getPassword()));
+    }
+  }
 }
+

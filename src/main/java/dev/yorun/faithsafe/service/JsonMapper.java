@@ -2,8 +2,6 @@ package dev.yorun.faithsafe.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.yorun.faithsafe.algo.FaithSafeEncryption;
-import dev.yorun.faithsafe.objects.UserObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
