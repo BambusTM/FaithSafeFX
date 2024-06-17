@@ -66,6 +66,7 @@ jobs:
         draft: false
         prerelease: false
         artifacts: ./build/jpackage/*
+        allowUpdates: true
         
 
     
