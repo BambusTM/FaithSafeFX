@@ -10,12 +10,14 @@ name: Java CI with Gradle for releases
 on:
   push:
     tags:
-      - 'v[0-9]+.*'
+      - '*'
 
 jobs:
   create_release:
     name: Create The Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
