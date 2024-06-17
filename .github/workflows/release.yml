@@ -55,6 +55,12 @@ jobs:
     #
     # - name: Build with Gradle 8.5
     #   run: gradle build
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: ${{ matrix.config.os }}
+        path: ./build/jpackage/*
+    
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1.14.0
