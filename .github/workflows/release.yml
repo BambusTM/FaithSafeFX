@@ -11,32 +11,11 @@ on:
   push:
     tags:
       - '*'
-
 jobs:
-  create_release:
-    name: Create The Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
-    steps:
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1.14.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag: ${{ github.ref }}
-          name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
   release_assets:
-    needs: create_release
     runs-on: ${{ matrix.config.os }}
     permissions:
-      contents: read
+      contents: write
     strategy:
       matrix:
         config:
@@ -76,10 +55,17 @@ jobs:
     #
     # - name: Build with Gradle 8.5
     #   run: gradle build
-    - name: Upload to realease
-      uses: Shopify/upload-to-release@v2.0.0
+    - name: Create Release
+      id: create_release
+      uses: ncipollo/release-action@v1.14.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: FaithSafe Release
-        path: ./build/jpackage/faithsafe-1.0.*
-        repo-token: secrets.GITHUB_TOKEN
+        tag: ${{ github.ref }}
+        name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        artifacts: ./build/jpackage/*
+        
+
     
