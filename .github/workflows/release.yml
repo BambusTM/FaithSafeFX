@@ -74,5 +74,25 @@ jobs:
         artifacts: ./build/jpackage/*
         allowUpdates: true
         
+  create_release:
+    runs-on: ubuntu-latest
+    needs: release_assets
+    name: Publish Release
+    permissions:
+      contents: write
+    steps:
+    - name: Create and publish Release
+      id: create_release
+      uses: ncipollo/release-action@v1.14.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag: ${{ github.ref }}
+        name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        allowUpdates: true
+  
+        
 
     
