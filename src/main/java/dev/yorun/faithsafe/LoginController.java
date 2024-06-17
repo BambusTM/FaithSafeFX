@@ -54,6 +54,9 @@ public class LoginController {
                 Variables.currentUserId = findUserByUsername(usernameField.getText(), jsonMapper)
                                 .getId();
                 Variables.currentUserPassword = passwordField.getText();
+                Variables.DATA_PATH = usernameField.getText() + "-data.json";
+                JsonPath.Data.updatePath(Variables.DATA_PATH);
+                System.out.println(Variables.DATA_PATH);
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-view.fxml")));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -62,6 +65,7 @@ public class LoginController {
                 stage.setFullScreen(false);
                 stage.setScene(scene);
                 stage.show();
+
             }
         } catch (Exception e) {
             System.err.println("Failed to load data from json: " + e.getMessage());
