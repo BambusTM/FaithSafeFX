@@ -21,7 +21,7 @@
             <Insets bottom="5.0" right="10.0" />
          </padding>
       </ButtonBar>
-      <Label id="header" contentDisplay="CENTER" layoutX="163.0" layoutY="14.0" stylesheets="@styles/Styles.css" text="Create a password" textAlignment="CENTER" textFill="#390c0c">
+      <Label id="header" contentDisplay="CENTER" layoutX="129.0" layoutY="14.0" stylesheets="@styles/Styles.css" text="Create a new password" textAlignment="CENTER" textFill="#390c0c">
          <font>
             <Font size="36.0" />
          </font>
@@ -29,42 +29,43 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="70.0" stylesheets="@styles/Styles.css" text="Username:">
+      <Label id="header2" layoutX="45.0" layoutY="66.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Username:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="103.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Domain:">
+      <Label id="header2" layoutX="45.0" layoutY="99.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Domain:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="138.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Email:">
+      <Label id="header2" layoutX="45.0" layoutY="134.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Email:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="173.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Password:">
+      <Label id="header2" layoutX="45.0" layoutY="169.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Password:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="header2" layoutX="66.0" layoutY="208.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Confirm:">
+      <Label id="header2" layoutX="45.0" layoutY="204.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Confirm:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="textField" fx:id="createPwUsername" layoutX="226.0" layoutY="70.0" prefHeight="30.0" prefWidth="292.0" promptText="Username" stylesheets="@styles/Styles.css" />
-      <TextField id="textField" fx:id="createPwDomain" layoutX="226.0" layoutY="105.0" prefHeight="30.0" prefWidth="292.0" promptText="www.example.com" stylesheets="@styles/Styles.css" />
-      <TextField id="textField" fx:id="createPwEmail" layoutX="226.0" layoutY="140.0" prefHeight="30.0" prefWidth="292.0" promptText="example@exmp.com" stylesheets="@styles/Styles.css" />
-      <TextField id="textField" fx:id="createPwPassword" layoutX="226.0" layoutY="175.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="292.0" promptText="Password" stylesheets="@styles/Styles.css" />
-      <TextField id="textField" fx:id="createPwConfirmPassword" layoutX="226.0" layoutY="210.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="292.0" promptText="Confirm password" stylesheets="@styles/Styles.css" />
-      <Label id="warningText" fx:id="createPwWarning" layoutX="368.0" layoutY="240.0" prefHeight="17.0" prefWidth="150.0" stylesheets="@styles/Styles.css" textAlignment="RIGHT" textFill="RED" />
-      <TextArea id="textArea" fx:id="createPwDescription" layoutX="226.0" layoutY="257.0" prefHeight="90.0" prefWidth="292.0" promptText="Ex.: Delete after at the of subscription..." stylesheets="@styles/Styles.css" />
-      <Label id="header2" layoutX="66.0" layoutY="257.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Memo:">
+      <TextField id="textField" fx:id="createPwUsername" layoutX="162.0" layoutY="66.0" prefHeight="30.0" prefWidth="310.0" promptText="Username" stylesheets="@styles/Styles.css" />
+      <TextField id="textField" fx:id="createPwDomain" layoutX="162.0" layoutY="101.0" prefHeight="30.0" prefWidth="310.0" promptText="www.example.com" stylesheets="@styles/Styles.css" />
+      <TextField id="textField" fx:id="createPwEmail" layoutX="162.0" layoutY="136.0" prefHeight="30.0" prefWidth="310.0" promptText="example@exmp.com" stylesheets="@styles/Styles.css" />
+      <TextField id="textField" fx:id="createPwPassword" layoutX="162.0" layoutY="171.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="310.0" promptText="Password" stylesheets="@styles/Styles.css" />
+      <TextField id="textField" fx:id="createPwConfirmPassword" layoutX="162.0" layoutY="206.0" onKeyTyped="#confirmPw" onMouseClicked="#confirmPw" prefHeight="30.0" prefWidth="310.0" promptText="Confirm password" stylesheets="@styles/Styles.css" />
+      <Label id="warningText" fx:id="createPwWarning" layoutX="322.0" layoutY="236.0" prefHeight="17.0" prefWidth="150.0" stylesheets="@styles/Styles.css" textAlignment="RIGHT" textFill="RED" />
+      <TextArea id="textArea" fx:id="createPwDescription" layoutX="162.0" layoutY="253.0" prefHeight="90.0" prefWidth="310.0" promptText="Ex.: Delete after at the of subscription..." stylesheets="@styles/Styles.css" />
+      <Label id="header2" layoutX="45.0" layoutY="253.0" prefHeight="35.0" prefWidth="109.0" stylesheets="@styles/Styles.css" text="Memo:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Button id="button" layoutX="501.0" layoutY="173.0" mnemonicParsing="false" onAction="#setPassword" prefHeight="26.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Generate" />
    </children>
 </AnchorPane>

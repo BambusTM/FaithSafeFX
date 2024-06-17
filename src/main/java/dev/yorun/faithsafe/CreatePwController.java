@@ -1,9 +1,7 @@
 package dev.yorun.faithsafe;
 
-import static dev.yorun.faithsafe.service.Variables.DATA_PATH;
-import static dev.yorun.faithsafe.service.Variables.USER_PATH;
-
 import dev.yorun.faithsafe.objects.DataObject;
+import dev.yorun.faithsafe.service.GeneratePassword;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
@@ -106,5 +104,10 @@ public class CreatePwController {
             createPwWarning.setText("Passwords do not match.");
             return false;
         }
+    }
+
+    public void setPassword() {
+        GeneratePassword gP = new GeneratePassword();
+        createPwPassword.setText(gP.generatePassword());
     }
 }

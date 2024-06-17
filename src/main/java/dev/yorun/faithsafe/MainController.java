@@ -198,4 +198,3 @@ public class MainController implements javafx.fxml.Initializable {
     }
   }
 }
-
