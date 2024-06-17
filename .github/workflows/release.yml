@@ -92,6 +92,7 @@ jobs:
         draft: false
         prerelease: false
         allowUpdates: true
+        makeLatest: true
   
         
 
