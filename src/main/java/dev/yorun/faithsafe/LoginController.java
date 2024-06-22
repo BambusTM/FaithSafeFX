@@ -1,10 +1,10 @@
 package dev.yorun.faithsafe;
 
-import static dev.yorun.faithsafe.service.Variables.USER_PATH;
-
 import dev.yorun.faithsafe.objects.UserObject;
 import dev.yorun.faithsafe.service.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
@@ -15,11 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCombination;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.crypto.BadPaddingException;
@@ -36,10 +35,6 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private Label loginWarning;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button resetButton;
 
     public static UserObject findUserByUsername(String username, JsonMapper<UserObject> jsonMapper) {
         return jsonMapper.loadFromJson().stream()
@@ -65,12 +60,10 @@ public class LoginController {
                 stage.setFullScreen(false);
                 stage.setScene(scene);
                 stage.show();
-
             }
         } catch (Exception e) {
             System.err.println("Failed to load data from json: " + e.getMessage());
         }
-
     }
 
     public void switchToResetPwView(ActionEvent event) {
@@ -85,6 +78,28 @@ public class LoginController {
         }
     }
 
+    public void handleImport(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Exported Data");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ZIP files (*.zip)", "*.zip"));
+        File file = fileChooser.showOpenDialog(stage);
+
+        if (file != null) {
+            try {
+                ImportPasswords importPw = new ImportPasswords();
+                File userFile = new File(JsonPath.User.path);
+                File dataFile = new File(JsonPath.Data.path);
+                importPw.importPasswords(file, userFile, dataFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private boolean checkCredentials() {
         UserObject user = findUserByUsername(usernameField.getText(), jsonMapper);
         if (user == null) {
@@ -92,9 +107,6 @@ public class LoginController {
             System.out.println("Username not found.");
             return false;
         }
-
-
-
         try {
             if (UserObject.getHashedPassword(passwordField.getText()).equals(user.getPassword())) {
                 System.out.println("Login successful.");

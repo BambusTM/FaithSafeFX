@@ -201,7 +201,6 @@ public class MainController implements javafx.fxml.Initializable {
   public void handleExport(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
     Parent root = loader.load();
-
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
     FileChooser fileChooser = new FileChooser();
@@ -211,10 +210,10 @@ public class MainController implements javafx.fxml.Initializable {
 
     if (file != null) {
       try {
-        ExportPasswords export = new ExportPasswords();
+        ExportPasswords exportPw = new ExportPasswords();
         File userFile = new File(JsonPath.User.path);
         File dataFile = new File(JsonPath.Data.path);
-        export.exportPasswords(userFile, dataFile, file);
+        exportPw.exportPasswords(userFile, dataFile, file);
       } catch (IOException e) {
         e.printStackTrace();
       }

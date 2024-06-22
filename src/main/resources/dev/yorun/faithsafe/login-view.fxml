@@ -30,7 +30,8 @@
             <Insets bottom="5.0" left="10.0" right="10.0" />
          </padding>
          <buttons>
-              <Button id="buttonOutline" fx:id="resetButton" minWidth="67.0" mnemonicParsing="false" onAction="#switchToResetPwView" prefHeight="30.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Register" />
+            <Button id="buttonOutline" mnemonicParsing="false" onAction="#handleImport" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Import" />
+              <Button id="button" fx:id="resetButton" mnemonicParsing="false" onAction="#switchToResetPwView" prefHeight="30.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Register" />
          </buttons>
       </ButtonBar>
     </children>
