@@ -131,7 +131,6 @@ public class JsonMapper<T extends BasicJson> {
                 entries.set(i, object);
             }
         }
-
         saveToFile(entries);
     }
 

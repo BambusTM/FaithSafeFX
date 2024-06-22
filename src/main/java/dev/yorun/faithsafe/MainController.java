@@ -2,10 +2,13 @@ package dev.yorun.faithsafe;
 
 import dev.yorun.faithsafe.objects.DataObject;
 import dev.yorun.faithsafe.objects.ListObject;
+import dev.yorun.faithsafe.service.ExportPasswords;
 import dev.yorun.faithsafe.service.JsonMapper;
 import dev.yorun.faithsafe.service.JsonPath;
 import dev.yorun.faithsafe.service.StageService;
 import dev.yorun.faithsafe.service.Variables;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.DataFormat;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -123,7 +127,6 @@ public class MainController implements javafx.fxml.Initializable {
       );
       editPwController.setOnEditSave(aVoid -> refreshPasswordList());
 
-
       Stage popupStage = new Stage();
       Scene scene = new Scene(root);
 
@@ -190,6 +193,27 @@ public class MainController implements javafx.fxml.Initializable {
 
   public void copyPassword() {
     Clipboard.getSystemClipboard().setContent(Map.of(DataFormat.PLAIN_TEXT, pwPreviewLabel3.getText()));
+  }
+
+  public void handleExport(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+    Parent root = loader.load();
+
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save Exported Data");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ZIP files (*.zip)", "*.zip"));
+    File file = fileChooser.showSaveDialog(stage);
+
+    if (file != null) {
+      try {
+        ExportPasswords export = new ExportPasswords();
+        export.exportPasswords(new File(Variables.USER_PATH), new File(Variables.DATA_PATH), file);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   private void refreshPasswordList() {
