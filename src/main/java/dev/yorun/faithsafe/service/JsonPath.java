@@ -16,7 +16,7 @@ public enum JsonPath {
     });
 
     boolean encrypted;
-    String path;
+    public String path;
     Class<?> clazz;
     TypeReference<?> typeReference;
     JsonPath(boolean encrypted, String path, Class<?> clazz, TypeReference<?> typeReference) {

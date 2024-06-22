@@ -50,6 +50,9 @@ public class MainController implements javafx.fxml.Initializable {
   @FXML
   private Label pwPreviewLabel3;
 
+  public JsonPath path;
+
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     usernameColumn.setCellValueFactory(
@@ -209,7 +212,9 @@ public class MainController implements javafx.fxml.Initializable {
     if (file != null) {
       try {
         ExportPasswords export = new ExportPasswords();
-        export.exportPasswords(new File(Variables.USER_PATH), new File(Variables.DATA_PATH), file);
+        File userFile = new File(JsonPath.User.path);
+        File dataFile = new File(JsonPath.Data.path);
+        export.exportPasswords(userFile, dataFile, file);
       } catch (IOException e) {
         e.printStackTrace();
       }

@@ -5,8 +5,7 @@ build/
 !**/src/test/**/build/
 
 data.json
-test-data.json
-test1-data.json
+*-data.json
 user.json
 
 ### IntelliJ IDEA ###
