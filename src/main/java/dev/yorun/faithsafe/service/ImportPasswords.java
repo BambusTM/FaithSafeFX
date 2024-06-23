@@ -9,22 +9,14 @@ import java.util.zip.ZipInputStream;
 
 public class ImportPasswords {
 
-  public void importPasswords(File zipFile, File userJsonFile, File passwordJsonFile) throws IOException {
+  public void importPasswords(File zipFile, File destinationDir) throws IOException {
     try (FileInputStream fis = new FileInputStream(zipFile);
          ZipInputStream zipIn = new ZipInputStream(fis)) {
 
       ZipEntry entry;
       while ((entry = zipIn.getNextEntry()) != null) {
-        File file = null;
-        if (entry.getName().equals(userJsonFile.getName())) {
-          file = userJsonFile;
-        } else if (entry.getName().equals(passwordJsonFile.getName())) {
-          file = passwordJsonFile;
-        }
-
-        if (file != null) {
-          extractFile(zipIn, file);
-        }
+        File file = new File(destinationDir, entry.getName());
+        extractFile(zipIn, file);
         zipIn.closeEntry();
       }
     }

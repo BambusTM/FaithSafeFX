@@ -4,6 +4,7 @@ import dev.yorun.faithsafe.objects.UserObject;
 import dev.yorun.faithsafe.service.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -38,16 +39,16 @@ public class LoginController {
 
     public static UserObject findUserByUsername(String username, JsonMapper<UserObject> jsonMapper) {
         return jsonMapper.loadFromJson().stream()
-                .filter(entry -> entry.getUsername().equals(username))
-                .findFirst()
-                .orElse(null);
+            .filter(entry -> entry.getUsername().equals(username))
+            .findFirst()
+            .orElse(null);
     }
 
     public void login(ActionEvent event) {
         try {
             if (checkCredentials()) {
                 Variables.currentUserId = findUserByUsername(usernameField.getText(), jsonMapper)
-                                .getId();
+                    .getId();
                 Variables.currentUserPassword = passwordField.getText();
                 Variables.DATA_PATH = usernameField.getText() + "-data.json";
                 JsonPath.Data.updatePath(Variables.DATA_PATH);
@@ -91,13 +92,80 @@ public class LoginController {
         if (file != null) {
             try {
                 ImportPasswords importPw = new ImportPasswords();
-                File userFile = new File(JsonPath.User.path);
-                File dataFile = new File(JsonPath.Data.path);
-                importPw.importPasswords(file, userFile, dataFile);
+                File tempDir = new File("temp/import");
+                tempDir.mkdirs();
+                importPw.importPasswords(file, tempDir);
+
+                File userFile = findUserFile(tempDir);
+                File passwordFile = findPasswordFile(tempDir);
+
+                System.out.println("Found files: " + (passwordFile != null ? passwordFile.getName() : "none") + ", " + (userFile != null ? userFile.getName() : "none"));
+
+                if (userFile != null) {
+                    File targetUserFile = new File(JsonPath.User.path);
+                    System.out.println("User file target path: " + targetUserFile.getAbsolutePath());
+                    if (targetUserFile.exists()) {
+                        System.out.println("Deleting existing user file: " + targetUserFile.delete());
+                    }
+                    if (!userFile.renameTo(targetUserFile)) {
+                        System.err.println("Failed to move user file to: " + targetUserFile.getAbsolutePath());
+                    } else {
+                        System.out.println("User file moved to: " + targetUserFile.getAbsolutePath());
+                    }
+                }
+                if (passwordFile != null) {
+                    File targetPasswordFile = new File(JsonPath.Data.path);
+                    System.out.println("Password file target path: " + targetPasswordFile.getAbsolutePath());
+
+                    if (targetPasswordFile.exists() || targetPasswordFile.isDirectory()) {
+                        boolean deleted = deleteRecursively(targetPasswordFile);
+                        System.out.println("Deleting existing password file/directory: " + deleted);
+                    }
+
+                    if (!passwordFile.renameTo(targetPasswordFile)) {
+                        System.err.println("Failed to move password file to: " + targetPasswordFile.getAbsolutePath());
+                    } else {
+                        System.out.println("Password file moved to: " + targetPasswordFile.getAbsolutePath());
+                    }
+                }
+
+                for (File f : tempDir.listFiles()) {
+                    f.delete();
+                }
+                tempDir.delete();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean deleteRecursively(File file) {
+        if (file.isDirectory()) {
+            for (File subFile : file.listFiles()) {
+                deleteRecursively(subFile);
+            }
+        }
+        return file.delete();
+    }
+
+
+    private File findUserFile(File directory) {
+        for (File file : directory.listFiles()) {
+            if (file.getName().equals("user.json")) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    private File findPasswordFile(File directory) {
+        for (File file : directory.listFiles()) {
+            if (file.getName().endsWith("-data.json")) {
+                return file;
+            }
+        }
+        return null;
     }
 
     private boolean checkCredentials() {
@@ -118,7 +186,6 @@ public class LoginController {
             }
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | IllegalBlockSizeException |
                  BadPaddingException e) {
-
             return false;
         }
     }

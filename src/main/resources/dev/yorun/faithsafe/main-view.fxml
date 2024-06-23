@@ -25,7 +25,7 @@
                                         <Button id="button" mnemonicParsing="false" onAction="#switchToCreatePwView" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Create" />
                                         <Button id="button" mnemonicParsing="false" onAction="#switchToEditPwView" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Edit" />
                                         <Button id="button" mnemonicParsing="false" onAction="#deletePassword" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Delete" />
-                              <Button id="buttonOutline" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Export" />
+                              <Button id="buttonOutline" mnemonicParsing="false" onAction="#handleExport" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Export" />
                               <Button id="buttonOutline" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" stylesheets="@styles/Styles.css" text="Logout" />
                                     </items>
                                 </ToolBar>
