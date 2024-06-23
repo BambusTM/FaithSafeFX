@@ -4,7 +4,6 @@ import dev.yorun.faithsafe.objects.UserObject;
 import dev.yorun.faithsafe.service.*;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -113,19 +112,20 @@ public class LoginController {
                         System.out.println("User file moved to: " + targetUserFile.getAbsolutePath());
                     }
                 }
-                if (passwordFile != null) {
-                    File targetPasswordFile = new File(JsonPath.Data.path);
-                    System.out.println("Password file target path: " + targetPasswordFile.getAbsolutePath());
 
-                    if (targetPasswordFile.exists() || targetPasswordFile.isDirectory()) {
-                        boolean deleted = deleteRecursively(targetPasswordFile);
-                        System.out.println("Deleting existing password file/directory: " + deleted);
+                if (passwordFile != null) {
+                    File targetPasswordFile = new File(JsonPath.Data.path).getParentFile();
+                    File finalPasswordFile = new File(targetPasswordFile, passwordFile.getName());
+                    System.out.println("Password file target path: " + finalPasswordFile.getAbsolutePath());
+
+                    if (finalPasswordFile.exists()) {
+                        System.out.println("Deleting existing password file: " + finalPasswordFile.delete());
                     }
 
-                    if (!passwordFile.renameTo(targetPasswordFile)) {
-                        System.err.println("Failed to move password file to: " + targetPasswordFile.getAbsolutePath());
+                    if (!passwordFile.renameTo(finalPasswordFile)) {
+                        System.err.println("Failed to move password file to: " + finalPasswordFile.getAbsolutePath());
                     } else {
-                        System.out.println("Password file moved to: " + targetPasswordFile.getAbsolutePath());
+                        System.out.println("Password file moved to: " + finalPasswordFile.getAbsolutePath());
                     }
                 }
 
@@ -148,7 +148,6 @@ public class LoginController {
         }
         return file.delete();
     }
-
 
     private File findUserFile(File directory) {
         for (File file : directory.listFiles()) {
