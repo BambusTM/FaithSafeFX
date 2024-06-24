@@ -140,15 +140,6 @@ public class LoginController {
         }
     }
 
-    private boolean deleteRecursively(File file) {
-        if (file.isDirectory()) {
-            for (File subFile : file.listFiles()) {
-                deleteRecursively(subFile);
-            }
-        }
-        return file.delete();
-    }
-
     private File findUserFile(File directory) {
         for (File file : directory.listFiles()) {
             if (file.getName().equals("user.json")) {
